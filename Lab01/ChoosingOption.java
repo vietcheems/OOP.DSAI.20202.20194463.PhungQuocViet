@@ -2,12 +2,11 @@ import javax.swing.JOptionPane;
 public class ChoosingOption {
 	public static void main(String[] args) {
 		int option = JOptionPane.showConfirmDialog(null,
-				"Do you want to change to the first class ticket?",
-				"bruh",
+				"Do you want an A+ for this course?",
+				":)",
 				JOptionPane.YES_NO_OPTION);
-		JOptionPane.showMessageDialog(null,"You've chosen: "
-				+ (option==JOptionPane.YES_OPTION?"Yes":"No"));
+		JOptionPane.showMessageDialog(null,
+				(option==JOptionPane.YES_OPTION?"Of course you do":"Liar"));
 		System.exit(0);
 	}
-
 }
