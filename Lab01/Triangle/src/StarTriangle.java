@@ -1,6 +1,9 @@
 import java.util.Scanner;
-public class Triangle {
-	public static void main(String args[]) {
+
+public class StarTriangle {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 		System.out.print("Enter the height of the triangle: ");
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
@@ -15,4 +18,5 @@ public class Triangle {
 		System.out.println();
 		}
 	}
+
 }

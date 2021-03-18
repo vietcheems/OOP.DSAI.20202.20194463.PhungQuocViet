@@ -1,5 +1,6 @@
+import java.util.Arrays;
 import java.util.Scanner;
-import java.util.Arrays; 
+
 public class NumOfDays {
 	public static boolean isInteger(String strNum) {
 	    if (strNum == null) {
@@ -12,7 +13,8 @@ public class NumOfDays {
 	    }
 	    return true;
 	}
-	public static void main(String args[]) {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		String[] jan = {"January", "Jan.", "Jan", "1"};
 		String[] feb = {"February", "Feb.", "Feb", "2"};
@@ -76,6 +78,7 @@ public class NumOfDays {
 			else {
 				System.out.println("Invalid month, please enter again");
 			}
+			sc.close();
 		}
 	}
 }

@@ -18,5 +18,4 @@ public class Sort {
 		}
 		System.out.println(Arrays.toString(arr));
 	}
-		
 }
