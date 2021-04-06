@@ -16,6 +16,17 @@ public class Cart {
 		}
 	}
 	
+	public void addDigitalVideoDisc(DigitalVideoDisc [] dvdList) {
+		if (MAX_NUMBERS_ORDERED - qtyOrdered < dvdList.length) {
+			System.out.println("Not enough space to add all the dvds in the list");
+		}
+		else {
+			for (int i = 0; i < dvdList.length; i ++) {
+				addDigitalVideoDisc(dvdList[i]);
+			}
+		}
+	}
+	
 	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
 		for (int i = 0; i < qtyOrdered; i ++) {
 			if (itemsOrdered[i].equals(disc)) {
