@@ -25,6 +25,9 @@ public class DigitalVideoDisc {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	public int getId() {
+		return id;
+	}
 	public DigitalVideoDisc(String title) {
 		super();
 		this.title = title;
