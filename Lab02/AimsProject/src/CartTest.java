@@ -1,7 +1,9 @@
-public class Aims {
+
+public class CartTest {
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Cart anOrder = new Cart();
+		Cart cart = new Cart();
 		
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King",
 				"Animation", "Roger Allers", 87, 19.95f);
@@ -10,16 +12,13 @@ public class Aims {
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin",
 				"Animation", 18.99f);
 		
-		DigitalVideoDisc[] dvdList = {dvd1, dvd2, dvd3};
-		anOrder.addDigitalVideoDisc(dvdList);
-
-
+		cart.addDigitalVideoDisc(dvd1, dvd2, dvd3);
 		
-		System.out.println("Total Cost is: ");
-		System.out.println(anOrder.totalCost());
-		
-		anOrder.removeDigitalVideoDisc(dvd2);
-		System.out.println("Total Cost after removing: ");
-		System.out.println(anOrder.totalCost());
+		cart.printList();
+		cart.searchByID(2);
+		cart.searchByID(1000);
+		cart.searchByTitle("Aladin");
+		cart.searchByTitle("i hate myself");
 	}
+
 }
