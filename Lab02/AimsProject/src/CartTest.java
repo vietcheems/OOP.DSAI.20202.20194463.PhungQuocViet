@@ -20,5 +20,4 @@ public class CartTest {
 		cart.searchByTitle("Aladin");
 		cart.searchByTitle("i hate myself");
 	}
-
 }
