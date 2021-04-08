@@ -1,1 +1,0 @@
-No, Java does not allow this as there will be two method with the same name and argument data type.
