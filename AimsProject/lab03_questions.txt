@@ -1,0 +1,6 @@
+I prefer the method with arbitrary number of argument because i do not need to create an array object to store the dvds.
+
+When we call the swap method, We are passing 2 references (or handles) that refer to 2 dvd objects. Java does not allow changing what object the handle refers to. That means if we try to change the object a handle refers to within the method, when that method is finished, the handle still refers to its original object. Therefore, the titles of the dvd remain unchanged after calling swap.
+
+It changed because when we pass object reference to a method, Java does not allow changing what it refers to, but Java lets us perform allowed operation  on the object to which it is refering 
+(changing the object's fields for example)
