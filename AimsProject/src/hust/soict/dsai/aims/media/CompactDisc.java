@@ -1,25 +1,48 @@
 package hust.soict.dsai.aims.media;
 
-public class CompactDisc extends Media{
-	private int length;
-	private String director;
-	
+import java.util.ArrayList;
+
+public class CompactDisc extends Disc{
+	private String artist;
+	private ArrayList<Track> tracks = new ArrayList<Track>();
+	public CompactDisc(int id, String title, String category, float cost, String dataAdded, int length, String director,
+			String artist, ArrayList<Track> tracks) {
+		super(id, title, category, cost, dataAdded, length, director);
+		this.artist = artist;
+		this.tracks = tracks;
+	}
+	public String getArtist() {
+		return artist;
+	}
+	public boolean addTrack(Track track) {
+		int index = tracks.indexOf(track);
+		if (index == -1) {
+			tracks.add(track);
+			System.out.println(track.getTitle() + " added successfully");
+			return true;
+		}
+		else {
+			System.out.println(track.getTitle() + " already in the CD");
+			return false;
+		}
+	}
+	public boolean removeTrack(Track track) {
+		int index = tracks.indexOf(track);
+		if (index == -1) {
+			System.out.println(track.getTitle() + " is not in the CD");
+			return false;
+		}
+		else {
+			tracks.remove(index);
+			System.out.println(track.getTitle() + "removed successfully");
+			return true;
+		}
+	}
 	public int getLength() {
-		return length;
+		int sum = 0;
+		for (Track track : tracks) {
+			sum += track.getLength();
+		}
+		return sum;
 	}
-
-	public String getDirector() {
-		return director;
-	}
-
-	public CompactDisc(int id, String title, String category, float cost, String dataAdded, int length, String director) {
-		super(id, title, category, cost, dataAdded);
-		this.length = length;
-		this.director = director;
-		// TODO Auto-generated constructor stub
-	}
-
-	
-
-	
 }

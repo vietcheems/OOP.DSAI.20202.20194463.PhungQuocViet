@@ -5,8 +5,12 @@ public abstract class Media {
 	protected String title;
 	protected String category;
 	protected float cost;
-	protected String dataAdded;
-	
+	protected String dateAdded; //format: dd/mm/yyyy
+
+	public int getId() {
+		return id;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -20,18 +24,19 @@ public abstract class Media {
 	}
 
 	public String getDataAdded() {
-		return dataAdded;
+		return dateAdded;
 	}
 
-	public Media(int id, String title, String category, float cost, String dataAdded) {
+	public Media(int id, String title, String category, float cost, String dateAdded) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.category = category;
 		this.cost = cost;
-		this.dataAdded = dataAdded;
+		this.dateAdded = dateAdded;
 	}
 
+	
 	
 
 }
