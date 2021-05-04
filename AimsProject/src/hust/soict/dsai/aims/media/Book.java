@@ -34,11 +34,8 @@ public class Book extends Media{
 			return true;
 		}
 	}
-
 	public Book(int id, String title, String category, float cost, String dataAdded, List<String> authors) {
 		super(id, title, category, cost, dataAdded);
 		this.authors = authors;
 	}
-	
-	
 }
