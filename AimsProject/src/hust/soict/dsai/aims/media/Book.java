@@ -3,27 +3,9 @@ package hust.soict.dsai.aims.media;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
-	 private int id;
-	 private String title;
-	 private String category;
-	 private float cost;
-	 private List<String> authors = new ArrayList<String>();
-	public Book() {
-		// TODO Auto-generated constructor stub
-	}
-	public int getId() {
-		return id;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public String getCategory() {
-		return category;
-	}
-	public float getCost() {
-		return cost;
-	}
+public class Book extends Media{
+	private List<String> authors = new ArrayList<String>();
+
 	public List<String> getAuthors() {
 		return authors;
 	}
@@ -52,13 +34,8 @@ public class Book {
 			return true;
 		}
 	}
-	public Book(int id, String title, String category, float cost, List<String> authors) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.category = category;
-		this.cost = cost;
+	public Book(int id, String title, String category, float cost, String dataAdded, List<String> authors) {
+		super(id, title, category, cost, dataAdded);
 		this.authors = authors;
 	}
-	
 }
