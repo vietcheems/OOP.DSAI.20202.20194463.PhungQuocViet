@@ -35,8 +35,6 @@ public abstract class Media {
 		this.cost = cost;
 		this.dateAdded = dateAdded;
 	}
-
 	
-	
-
+	public abstract String getDetail();
 }

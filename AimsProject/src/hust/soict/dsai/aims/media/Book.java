@@ -38,4 +38,12 @@ public class Book extends Media{
 		super(id, title, category, cost, dataAdded);
 		this.authors = authors;
 	}
+
+	@Override
+	public String getDetail() {
+		// TODO Auto-generated method stub
+		String authorsList = String.join(", ", authors);
+		String str = String.valueOf(id) + ". Book - " + title + " - " + category + " - " + authorsList + " - " + String.valueOf(cost) + "$";
+		return str;
+	}
 }
