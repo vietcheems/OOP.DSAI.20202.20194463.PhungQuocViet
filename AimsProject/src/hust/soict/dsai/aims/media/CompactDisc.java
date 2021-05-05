@@ -53,7 +53,7 @@ public class CompactDisc extends Disc implements Playable{
 		}
 	}
 	public String getDetail() {
-		String str = String.valueOf(id) + ". CD - " + title + " - " + category + " - " + director + " - " + String.valueOf(length) + ": " + String.valueOf(cost) + "$";
+		String str = String.valueOf(id) + ". CD - " + title + " - " + category + " - " + director + " - " + String.valueOf(length) + " - " + String.valueOf(cost) + "$";
 		return str;
 	}
 }
