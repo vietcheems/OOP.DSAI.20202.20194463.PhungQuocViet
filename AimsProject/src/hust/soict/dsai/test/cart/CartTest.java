@@ -12,10 +12,10 @@ public class CartTest {
 				"Animation", 19.95f, "1/1/2021", "Roger Allers", 87);
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars",
 				"Science Fiction", 24.95f, "1/1/2021", "George Lucas", 87);
-//		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin",
-//				"Animation", 18.99f);
+		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin",
+				"Animation", 18.99f, "1/1/2021/", "Someone", 100);
 		
-		cart.addDigitalVideoDisc(dvd1, dvd2);
+		cart.addDigitalVideoDisc(dvd1, dvd2, dvd3);
 		
 		cart.printList();
 		cart.searchByID(2);

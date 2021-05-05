@@ -1,6 +1,6 @@
 package hust.soict.dsai.aims.media;
 
-public class DigitalVideoDisc extends Media{
+public class DigitalVideoDisc extends Media implements Playable{
 	private static int nbDigitalVideoDiscs = 0;
 	private String director;
 	private int length;
@@ -19,5 +19,9 @@ public class DigitalVideoDisc extends Media{
 	public String getDetail() {
 		String str = String.valueOf(id) + ". DVD - " + title + " - " + category + " - " + director + " - " + String.valueOf(length) + ": " + String.valueOf(cost) + "$";
 		return str;
+	}
+	public void play() {
+		System.out.println("Playing DVD: " + this.getTitle());
+		System.out.println("DVD length: " + this.getLength());
 	}
 }
