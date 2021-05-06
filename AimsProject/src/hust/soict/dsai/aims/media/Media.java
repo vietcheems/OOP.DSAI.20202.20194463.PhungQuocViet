@@ -37,4 +37,14 @@ public abstract class Media {
 	}
 	
 	public abstract String getDetail();
+	
+	public boolean equals(Object obj) {
+		if (obj instanceof Media) {
+			Media new_obj = (Media) obj;
+			return new_obj.title == title;
+		}
+		else {
+			return false;
+		}
+	}
 }

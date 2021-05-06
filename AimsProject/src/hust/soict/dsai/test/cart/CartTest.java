@@ -28,7 +28,7 @@ public class CartTest {
 		cart.addMedia(dvd3);
 		cart.addMedia(b);
 		cart.removeMedia(dvd3);
-//		cart.removeMedia(b);
+		cart.removeMedia(b);
 		
 		cart.printList();
 		cart.searchByID(2);
