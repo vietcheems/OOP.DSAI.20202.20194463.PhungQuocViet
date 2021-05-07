@@ -1,0 +1,18 @@
+1. Iterate through the list and print out the information of the media by using toString() method. Observe what happens and explain in detail.
+The ouput is different for each type of media due to the fact the toString method is overrided from Media
+
+2. If the passing object is not an instance of Media, what happens?
+It returns false.
+
+3. Suppose we are taking this Comparable interface approach.
+a)What class should implement the Comparable interface?
+class Media
+
+b)In those classes, how should you implement the compareTo() method be to reflect the ordering that we want?
+Use compareTo() to first compare the title of the two objects and compare the cost if it does not return 0
+
+c)Can we have two ordering rules of the item  by title then cost and by cost then title) if we use this Comparable interface approach?
+We cannot since compareTo() can only be overriden once.
+
+d)Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
+Use instanceof to check whether the object is an instance of DVD in the compare() method of the 2 comparator, then change the way of comparing.
