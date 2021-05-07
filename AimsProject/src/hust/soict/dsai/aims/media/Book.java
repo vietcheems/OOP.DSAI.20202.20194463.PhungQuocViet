@@ -40,7 +40,7 @@ public class Book extends Media{
 	}
 
 	@Override
-	public String getDetail() {
+	public String toString() {
 		// TODO Auto-generated method stub
 		String authorsList = String.join(", ", authors);
 		String str = String.valueOf(id) + ". Book - " + title + " - " + category + " - " + authorsList + " - " + String.valueOf(cost) + "$";

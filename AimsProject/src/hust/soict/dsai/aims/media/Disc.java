@@ -19,7 +19,7 @@ public class Disc extends Media{
 		this.director = director;
 	}
 	
-	public String getDetail() {
+	public String toString() {
 		String str = String.valueOf(id) + ". Disc - " + title + " - " + category + " - " + director + " - " + String.valueOf(length) + ": " + String.valueOf(cost) + "$";
 		return str;
 	}

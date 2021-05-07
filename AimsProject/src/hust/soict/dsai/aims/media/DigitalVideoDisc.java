@@ -16,7 +16,7 @@ public class DigitalVideoDisc extends Media implements Playable{
 		this.director = director;
 		this.length = length;
 	}
-	public String getDetail() {
+	public String toString() {
 		String str = String.valueOf(id) + ". DVD - " + title + " - " + category + " - " + director + " - " + String.valueOf(length) + " - " + String.valueOf(cost) + "$";
 		return str;
 	}

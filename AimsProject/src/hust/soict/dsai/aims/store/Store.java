@@ -33,7 +33,7 @@ public class Store {
 	
 	public void printStore() {
 		for (int i = 0; i < itemsInStore.size(); i++) { 
-            System.out.println(itemsInStore.get(i).getDetail()); 
+            System.out.println(itemsInStore.get(i).toString()); 
         } 
 	}
 }

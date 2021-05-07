@@ -36,7 +36,7 @@ public abstract class Media {
 		this.dateAdded = dateAdded;
 	}
 	
-	public abstract String getDetail();
+	public abstract String toString();
 	
 	public boolean equals(Object obj) {
 		if (obj instanceof Media) {

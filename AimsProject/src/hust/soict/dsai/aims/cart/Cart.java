@@ -19,7 +19,7 @@ public class Cart {
 		System.out.println("**********CART**********");
 		System.out.println("Ordered Items:");
 		for (Media itemOrdered : itemsOrdered) {
-			System.out.println(itemOrdered.getDetail());
+			System.out.println(itemOrdered.toString());
 		}
 		System.out.println("Total cost: " + String.valueOf(totalCost()));
 		System.out.println("************************");
@@ -28,7 +28,7 @@ public class Cart {
 	public boolean searchByID(int id) {
 		for (Media itemOrdered : itemsOrdered) {
 			if (itemOrdered.getId() == id) {
-				System.out.println(itemOrdered.getDetail());
+				System.out.println(itemOrdered.toString());
 				return true;
 			}
 		}
@@ -40,7 +40,7 @@ public class Cart {
 		boolean found = false;
 		for (Media itemOrdered : itemsOrdered) {
 			if (itemOrdered.getTitle() == title) {
-				System.out.println(itemOrdered.getDetail());
+				System.out.println(itemOrdered.toString());
 				found = true;
 			}
 		}
