@@ -1,5 +1,6 @@
 package hust.soict.dsai.aims.cart;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
@@ -82,4 +83,11 @@ public class Cart {
 		}
 	}
 	
+	public void sortByTitleCost() {
+		Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
+	}
+	
+	public void sortByCostTitle() {
+		Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
+	}
 }

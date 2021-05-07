@@ -13,7 +13,7 @@ public class CartTest {
 		Cart cart = new Cart();
 		
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King",
-				"Animation", 19.95f, "1/1/2021", "Roger Allers", 87);
+				"Animation", 19.99f, "1/1/2021", "Roger Allers", 87);
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars",
 				"Science Fiction", 24.95f, "1/1/2021", "George Lucas", 87);
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin",
@@ -27,9 +27,12 @@ public class CartTest {
 		cart.addMedia(dvd2);
 		cart.addMedia(dvd3);
 		cart.addMedia(b);
-		cart.removeMedia(dvd3);
-		cart.removeMedia(b);
+//		cart.removeMedia(dvd3);
+//		cart.removeMedia(b);
 		
+		cart.sortByCostTitle();
+		cart.printList();
+		cart.sortByTitleCost();
 		cart.printList();
 		cart.searchByID(2);
 		cart.searchByID(1000);
