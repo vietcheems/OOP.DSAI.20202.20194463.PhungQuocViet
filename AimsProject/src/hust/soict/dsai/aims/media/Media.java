@@ -6,6 +6,7 @@ import hust.soict.dsai.aims.media.comparator.MediaComparatorByCostTitle;
 import hust.soict.dsai.aims.media.comparator.MediaComparatorByTitleCost;
 
 public abstract class Media {
+	private static int idGiver = 0;
 	protected int id;
 	protected String title;
 	protected String category;
@@ -36,9 +37,8 @@ public abstract class Media {
 		return dateAdded;
 	}
 
-	public Media(int id, String title, String category, float cost, String dateAdded) {
-		super();
-		this.id = id;
+	public Media(String title, String category, float cost, String dateAdded) {
+		this.id = ++idGiver;
 		this.title = title;
 		this.category = category;
 		this.cost = cost;

@@ -1,7 +1,6 @@
 package hust.soict.dsai.aims.media;
 
 public class DigitalVideoDisc extends Media implements Playable{
-	private static int nbDigitalVideoDiscs = 0;
 	private String director;
 	private int length;
 	public String getDirector() {
@@ -12,7 +11,7 @@ public class DigitalVideoDisc extends Media implements Playable{
 	}
 	public DigitalVideoDisc(String title, String category, float cost, String dateAdded, String director,
 			int length) {
-		super(++nbDigitalVideoDiscs, title, category, cost, dateAdded);
+		super(title, category, cost, dateAdded);
 		this.director = director;
 		this.length = length;
 	}

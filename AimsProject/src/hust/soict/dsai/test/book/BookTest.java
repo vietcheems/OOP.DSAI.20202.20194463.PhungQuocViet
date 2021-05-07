@@ -10,7 +10,7 @@ public class BookTest {
 		// TODO Auto-generated method stub
 		List<String> authors = new ArrayList<String>();
 		authors.add("Dr.Nguyen Thieu Huy");
-		Book book = new Book(1, "Lecture on Algebra", "Textbook", 10.0f, "1/1/2021", authors);
+		Book book = new Book("Lecture on Algebra", "Textbook", 10.0f, "1/1/2021", authors);
 	}
 
 }

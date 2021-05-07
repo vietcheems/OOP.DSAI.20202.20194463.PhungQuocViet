@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class CompactDisc extends Disc implements Playable{
 	private String artist;
 	private ArrayList<Track> tracks = new ArrayList<Track>();
-	public CompactDisc(int id, String title, String category, float cost, String dataAdded, int length, String director,
+	public CompactDisc(String title, String category, float cost, String dateAdded, int length, String director,
 			String artist, ArrayList<Track> tracks) {
-		super(id, title, category, cost, dataAdded, length, director);
+		super(title, category, cost, dateAdded, length, director);
 		this.artist = artist;
 		this.tracks = tracks;
 	}

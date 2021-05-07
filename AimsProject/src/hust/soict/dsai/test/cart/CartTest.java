@@ -21,7 +21,7 @@ public class CartTest {
 
 		List<String> authors = new ArrayList<String>();
 		authors.add("Dr.Nguyen Thieu Huy");
-		Book b = new Book(1, "Lecture on Algebra", "Textbook", 10.0f, "1/1/2021", authors);
+		Book b = new Book("Lecture on Algebra", "Textbook", 10.0f, "1/1/2021", authors);
 		
 		cart.addMedia(dvd1);
 		cart.addMedia(dvd2);

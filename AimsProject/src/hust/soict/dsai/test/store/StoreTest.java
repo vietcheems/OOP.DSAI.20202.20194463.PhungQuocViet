@@ -1,6 +1,7 @@
 package hust.soict.dsai.test.store;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import hust.soict.dsai.aims.media.Book;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
@@ -20,18 +21,24 @@ public class StoreTest {
 		
 		List<String> authors = new ArrayList<String>();
 		authors.add("Dr.Nguyen Thieu Huy");
-		Book b = new Book(1, "Lecture on Algebra", "Textbook", 10.0f, "1/1/2021", authors);
+		Book b = new Book("Lecture on Algebra", "Textbook", 10.0f, "1/1/2021", authors);
 		
 		store.addMedia(dvd1);
 		store.addMedia(dvd2);
 		store.addMedia(dvd3);
 		store.addMedia(b);
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		System.out.println(str.equals("Aladin"));
+		store.searchByTitle(str);
+		store.searchByTitle("Aladin");
+
 		
-		store.printStore();
-		store.removeMedia(dvd2);
-		store.printStore();
-		store.removeMedia(b);
-		store.printStore();
+//		store.printStore();
+//		store.removeMedia(dvd2);
+//		store.printStore();
+//		store.removeMedia(b);
+//		store.printStore();
 	}
 
 }

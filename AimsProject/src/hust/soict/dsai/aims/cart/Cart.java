@@ -40,7 +40,7 @@ public class Cart {
 	public boolean searchByTitle(String title) {
 		boolean found = false;
 		for (Media itemOrdered : itemsOrdered) {
-			if (itemOrdered.getTitle() == title) {
+			if (itemOrdered.getTitle().equals(title)) {
 				System.out.println(itemOrdered.toString());
 				found = true;
 			}
@@ -89,5 +89,29 @@ public class Cart {
 	
 	public void sortByCostTitle() {
 		Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
+	}
+	
+	public Media getMediaByTitle(String title) {
+		Media found = null;
+		for (Media item : itemsOrdered) {
+			if (item.getTitle().equals(title)) {
+				found = item;
+			}
+		}
+		return found;
+	}
+	
+	public Media getMediaById(int id) {
+		Media found = null;
+		for (Media item : itemsOrdered) {
+			if (item.getId() == id) {
+				found = item;
+			}
+		}
+		return found;
+	}
+	
+	public void emptyCart() {
+		itemsOrdered = new ArrayList<Media>();
 	}
 }

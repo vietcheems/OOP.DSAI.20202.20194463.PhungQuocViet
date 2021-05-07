@@ -36,4 +36,28 @@ public class Store {
             System.out.println(itemsInStore.get(i).toString()); 
         } 
 	}
+	
+	public boolean searchByTitle(String title) {
+		boolean found = false;
+		for (Media item : itemsInStore) {
+			if (item.getTitle().equals(title)) {
+				System.out.println(item.toString());
+				found = true;
+			}
+		}
+		if (found == false) {
+			System.out.println("Could not find the item with matching title");
+		}
+		return found;
+	}
+	
+	public Media getMediaByTitle(String title) {
+		Media found = null;
+		for (Media item : itemsInStore) {
+			if (item.getTitle().equals(title)) {
+				found = item;
+			}
+		}
+		return found;
+	}
 }

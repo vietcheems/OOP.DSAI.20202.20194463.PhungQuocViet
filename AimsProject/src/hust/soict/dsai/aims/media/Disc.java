@@ -12,9 +12,9 @@ public class Disc extends Media{
 		return director;
 	}
 
-	public Disc(int id, String title, String category, float cost, String dataAdded, int length,
+	public Disc(String title, String category, float cost, String dataAdded, int length,
 			String director) {
-		super(id, title, category, cost, dataAdded);
+		super(title, category, cost, dataAdded);
 		this.length = length;
 		this.director = director;
 	}
