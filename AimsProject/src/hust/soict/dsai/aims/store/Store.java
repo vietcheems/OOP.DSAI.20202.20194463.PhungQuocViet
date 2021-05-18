@@ -19,6 +19,10 @@ public class Store {
 		}
 	}
 	
+	public ArrayList<Media> getItemsInStore() {
+		return itemsInStore;
+	}
+
 	public boolean removeMedia(Media item) {
 		if (itemsInStore.contains(item)) {
 			itemsInStore.remove(item);
