@@ -1,29 +1,53 @@
 package hust.soict.dsai.javafx;
 
 
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class PainterController {
 
     @FXML
-    private VBox drawingAreaPane;
-
+    private Pane drawingAreaPane;
+    private ToggleGroup bruh;
+    private boolean pen;
+    
     @FXML
     void drawingAreaMouseDragged(MouseEvent event) {
-    	Circle newCircle = new Circle(event.getX(),
-    			event.getY(), 4);
+    	Circle newCircle = null;
+    	if (pen) {
+    		newCircle = new Circle(event.getX(),
+	    			event.getY(), 4, Color.BLACK);
+    	}
+    	
+    	else if (!pen){
+	    	newCircle = new Circle(event.getX(),
+	    			event.getY(), 4, Color.WHITE);
+    	}
+    	
     	drawingAreaPane.getChildren().add(newCircle);
     }
+
 
     @FXML
     void clearButtonPressed(ActionEvent event) {
     	drawingAreaPane.getChildren().clear();
+    }
+    
+    @FXML
+    void pen(ActionEvent event) {
+    	pen = true;
+    }
+    
+    @FXML
+    void eraser(ActionEvent event) {
+    	pen = false;
     }
 
 }
