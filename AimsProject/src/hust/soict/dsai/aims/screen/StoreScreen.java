@@ -96,7 +96,6 @@ public class StoreScreen extends JFrame {
 			container.add(new JButton("Add to cart"));
 			if (media instanceof Playable) {
 				JButton playButton = new JButton("Play");
-				playButton.setActionCommand("Play");
 				playButton.addActionListener(new PlayButtonListener());
 				container.add(playButton);
 			}
