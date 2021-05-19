@@ -15,11 +15,13 @@ public class PainterController {
 
     @FXML
     private Pane drawingAreaPane;
+    private VBox vbox;
     private ToggleGroup bruh;
-    private boolean pen;
+    private boolean pen = true;
     
     @FXML
     void drawingAreaMouseDragged(MouseEvent event) {
+    	System.out.println(event.getX() + "and" + event.getY() + "and" + drawingAreaPane.getWidth());
     	Circle newCircle = null;
     	if (pen) {
     		newCircle = new Circle(event.getX(),
@@ -31,7 +33,8 @@ public class PainterController {
 	    			event.getY(), 4, Color.WHITE);
     	}
     	
-    	drawingAreaPane.getChildren().add(newCircle);
+    	if (event.getX() > 0 && event.getY() > 0 && event.getX() < drawingAreaPane.getWidth() && event.getY() < drawingAreaPane.getHeight())
+    		drawingAreaPane.getChildren().add(newCircle);
     }
 
 
