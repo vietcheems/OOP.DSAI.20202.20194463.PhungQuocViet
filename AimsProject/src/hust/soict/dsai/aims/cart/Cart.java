@@ -4,10 +4,12 @@ import java.util.Collections;
 
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Cart {
 	public static final int MAX_NUMBERS_ORDERED = 20;
-	private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
+	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 	public float totalCost() {
 		float sum = 0f;
 		for (Media itemOrdered : itemsOrdered) {
@@ -112,6 +114,12 @@ public class Cart {
 	}
 	
 	public void emptyCart() {
-		itemsOrdered = new ArrayList<Media>();
+		itemsOrdered = FXCollections.observableArrayList();
 	}
+
+	public ObservableList<Media> getItemsOrdered() {
+		return itemsOrdered;
+	}
+
+
 }
