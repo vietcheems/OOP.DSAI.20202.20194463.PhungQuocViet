@@ -1,5 +1,9 @@
 package hust.soict.dsai.aims.media;
 
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import hust.soict.dsai.aims.exception.PlayerException;
 
 public class DigitalVideoDisc extends Media implements Playable{
@@ -23,6 +27,8 @@ public class DigitalVideoDisc extends Media implements Playable{
 	}
 	public void play() throws PlayerException {
 		if (this.getLength() > 0) {
+			JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, "Playing DVD: " + this.getTitle() + "\n" + "DVD length: " + this.getLength(), "Playing DVD", JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("Playing DVD: " + this.getTitle());
 			System.out.println("DVD length: " + this.getLength());
 		}

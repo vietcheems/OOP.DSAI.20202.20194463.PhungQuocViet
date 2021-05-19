@@ -2,6 +2,9 @@ package hust.soict.dsai.aims.media;
 
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import hust.soict.dsai.aims.exception.PlayerException;
 
 public class CompactDisc extends Disc implements Playable{
@@ -49,6 +52,8 @@ public class CompactDisc extends Disc implements Playable{
 	}
 	public void play() throws PlayerException {
 		if (this.getLength() > 0) {
+			JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, "Playing CD: " + this.getTitle() + "\n" + "CD length: " + this.getLength(), "Playing CD", JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("Playing CD: " + this.getTitle());
 			System.out.println("CD length: " + this.getLength());
 			for (Track track : tracks) {

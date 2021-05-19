@@ -1,5 +1,8 @@
 package hust.soict.dsai.aims.media;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import hust.soict.dsai.aims.exception.PlayerException;
 
 public class Track implements Playable{
@@ -24,6 +27,8 @@ public class Track implements Playable{
 	}
 	public void play() throws PlayerException {
 		if (this.getLength() > 0) {
+			JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, "Playing Track: " + this.getTitle() + "\n" + "Track length: " + this.getLength(), "Playing Track", JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("Playing track: " + this.getTitle());
 			System.out.println("Track length: " + this.getLength());
 		}

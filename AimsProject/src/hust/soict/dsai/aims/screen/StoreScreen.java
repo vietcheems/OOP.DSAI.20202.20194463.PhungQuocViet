@@ -9,8 +9,10 @@ import java.util.List;
 
 import javax.swing.*;
 
+import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Book;
+import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
@@ -18,6 +20,7 @@ import hust.soict.dsai.aims.store.Store;
 
 public class StoreScreen extends JFrame {
 	private Store store;
+	private Cart cart;
 	JPanel createNorth() {
 		JPanel north = new JPanel();
 		north.setLayout(new BoxLayout(north, BoxLayout.Y_AXIS));
@@ -59,7 +62,7 @@ public class StoreScreen extends JFrame {
 		
 		header.add(Box.createRigidArea(new Dimension(10, 10)));
 		header.add(title);
-//		header.add(Box.createHorizontalGlue());
+		header.add(Box.createHorizontalGlue());
 		header.add(cart);
 		header.add(Box.createRigidArea(new Dimension(10, 10)));
 		
@@ -93,7 +96,9 @@ public class StoreScreen extends JFrame {
 			JPanel container = new JPanel();
 			container.setLayout(new FlowLayout(FlowLayout.CENTER));
 			
-			container.add(new JButton("Add to cart"));
+			JButton addToCartButton = new JButton("Add to cart");
+			addToCartButton.addActionListener(new AddToCartListener());
+			container.add(addToCartButton);
 			if (media instanceof Playable) {
 				JButton playButton = new JButton("Play");
 				playButton.addActionListener(new PlayButtonListener());
@@ -115,20 +120,41 @@ public class StoreScreen extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (media instanceof DigitalVideoDisc)
+				if (media instanceof DigitalVideoDisc) {
 					try {
 						((DigitalVideoDisc) media).play();
 					} catch (PlayerException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+				} else if (media instanceof CompactDisc) {
+					try {
+						((CompactDisc) media).play();
+					} catch (PlayerException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
 			}
+		}
+		
+		private class AddToCartListener implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame f = new JFrame();
+				JOptionPane.showMessageDialog(f, "Media successfully added to cart", "Message", JOptionPane.INFORMATION_MESSAGE);
+				cart.addMedia(media);
+			}
+			
 		}
 	}
 	
-	public StoreScreen(Store store) {
+	public StoreScreen(Store store, Cart cart) {
 		// TODO Auto-generated constructor stub
 		this.store = store;
+		this.cart = cart;
 		Container cp = getContentPane();
 		cp.setLayout(new BorderLayout());
 		
@@ -143,6 +169,7 @@ public class StoreScreen extends JFrame {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Cart cart = new Cart();
 		Store store = new Store();
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King",
 				"Animation", 19.95f, "1/1/2021", "Roger Allers", 87);
@@ -159,7 +186,7 @@ public class StoreScreen extends JFrame {
 		store.addMedia(dvd2);
 		store.addMedia(dvd3);
 		store.addMedia(b);
-		new StoreScreen(store);
+		new StoreScreen(store, cart);
 	}
 
 }
