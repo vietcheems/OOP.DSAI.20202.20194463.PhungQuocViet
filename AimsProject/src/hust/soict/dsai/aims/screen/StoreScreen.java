@@ -2,11 +2,14 @@ package hust.soict.dsai.aims.screen;
 
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
 
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Book;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
@@ -55,11 +58,8 @@ public class StoreScreen extends JFrame {
 		cart.setMaximumSize(new Dimension(100, 50));
 		
 		header.add(Box.createRigidArea(new Dimension(10, 10)));
-		cart.setMaximumSize(new Dimension(100, 50));
-		
-		header.add(Box.createRigidArea(new Dimension(10, 10)));
 		header.add(title);
-		header.add(Box.createHorizontalGlue());
+//		header.add(Box.createHorizontalGlue());
 		header.add(cart);
 		header.add(Box.createRigidArea(new Dimension(10, 10)));
 		
@@ -95,7 +95,10 @@ public class StoreScreen extends JFrame {
 			
 			container.add(new JButton("Add to cart"));
 			if (media instanceof Playable) {
-				container.add(new JButton("Play"));
+				JButton playButton = new JButton("Play");
+				playButton.setActionCommand("Play");
+				playButton.addActionListener(new PlayButtonListener());
+				container.add(playButton);
 			}
 			
 			this.add(Box.createVerticalGlue());
@@ -106,7 +109,24 @@ public class StoreScreen extends JFrame {
 			
 			this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		}
+		
+		
+		private class PlayButtonListener implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (media instanceof DigitalVideoDisc)
+					try {
+						((DigitalVideoDisc) media).play();
+					} catch (PlayerException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+			}
+		}
 	}
+	
 	public StoreScreen(Store store) {
 		// TODO Auto-generated constructor stub
 		this.store = store;
@@ -120,6 +140,7 @@ public class StoreScreen extends JFrame {
 		setTitle("Store");
 		setSize(1024, 768);
 	}
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
