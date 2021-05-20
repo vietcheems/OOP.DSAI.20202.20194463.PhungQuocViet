@@ -114,7 +114,7 @@ public class Cart {
 	}
 	
 	public void emptyCart() {
-		itemsOrdered = FXCollections.observableArrayList();
+		this.itemsOrdered.clear();
 	}
 
 	public ObservableList<Media> getItemsOrdered() {

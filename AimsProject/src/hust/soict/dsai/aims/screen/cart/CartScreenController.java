@@ -1,25 +1,47 @@
-package hust.soict.dsai.aims.screen;
+package hust.soict.dsai.aims.screen.cart;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
+import hust.soict.dsai.aims.media.CompactDisc;
+import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
+import hust.soict.dsai.aims.screen.store.StoreScreen;
+import hust.soict.dsai.aims.store.Store;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class CartScreenController {
 	
+	private Store store;
 	private Cart cart;
 	private FilteredList<Media> filteredData;
-	private boolean filterById = true;
+	private boolean filterById;
+	
+	@FXML
+	private BorderPane borderPane;
+	
+	@FXML
+	private Label totalCost;
+	
+	@FXML
+	private Button btnPlaceOrder;
 	
 	@FXML
 	private TextField tfFilter;
@@ -47,13 +69,18 @@ public class CartScreenController {
 	@FXML
 	private TableColumn<Media, Float> colMediaCost;
 	
-	public CartScreenController(Cart cart) {
+	@FXML
+	private MenuItem menuItemViewStore;
+	
+	public CartScreenController(Cart cart, Store store) {
 		super();
 		this.cart = cart;
+		this.store = store;
 	}
 	
 	@FXML
 	private void initialize() {
+		totalCost.setText(String.valueOf(cart.totalCost()) + "$");
 		colMediaTitle.setCellValueFactory(
 				new PropertyValueFactory<Media, String>("title"));
 		colMediaCategory.setCellValueFactory(
@@ -122,6 +149,7 @@ public class CartScreenController {
 	void btnRemovePressed(ActionEvent event) {
 		Media media = tblMedia.getSelectionModel().getSelectedItem();
 		cart.removeMedia(media);
+		totalCost.setText(String.valueOf(cart.totalCost()) + "$");
 	}
 	
     @FXML
@@ -132,5 +160,37 @@ public class CartScreenController {
     @FXML
     void radioBtnFilterTitlePressed(ActionEvent event) {
     	filterById = false;
+    }
+    
+    @FXML
+    void btnPlayPressed(ActionEvent event) {
+    	Media media = tblMedia.getSelectionModel().getSelectedItem();
+		if (media instanceof DigitalVideoDisc) {
+			try {
+				((DigitalVideoDisc) media).play();
+			} catch (PlayerException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		} else if (media instanceof CompactDisc) {
+			try {
+				((CompactDisc) media).play();
+			} catch (PlayerException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+    }
+    
+    @FXML
+    void btnPlaceOrderPressed(ActionEvent event) {
+    	this.cart.emptyCart();
+    	JFrame f = new JFrame();
+		JOptionPane.showMessageDialog(f, "Order placed successfully", "Place Order", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    @FXML
+    void menuItemViewStoreClicked(ActionEvent event) {
+		new StoreScreen(this.store, this.cart);
     }
 }
