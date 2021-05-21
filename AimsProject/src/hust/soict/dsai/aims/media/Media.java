@@ -2,7 +2,10 @@ package hust.soict.dsai.aims.media;
 
 import java.util.Comparator;
 
-import hust.soict.dsai.aims.exception.MediaPlayException;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import hust.soict.dsai.aims.exception.MediaConstructorException;
 import hust.soict.dsai.aims.media.comparator.MediaComparatorByCostTitle;
 import hust.soict.dsai.aims.media.comparator.MediaComparatorByTitleCost;
 
@@ -38,8 +41,8 @@ public abstract class Media {
 		return dateAdded;
 	}
 
-	public Media(String title, String category, float cost, String dateAdded) throws MediaPlayException {
-		if (cost <= 0) throw new MediaPlayException("Cost can be non-positive");
+	public Media(String title, String category, float cost, String dateAdded) throws MediaConstructorException {
+		if (cost <= 0) throw new MediaConstructorException("Cost can be non-positive");
 		this.id = ++idGiver;
 		this.title = title;
 		this.category = category;
@@ -49,12 +52,25 @@ public abstract class Media {
 	
 	public abstract String toString();
 	
-	public boolean equals(Object obj) {
-		if (obj instanceof Media) {
+	public boolean equals(Object obj){
+		if (obj == null) {
+			throw new NullPointerException("Media is null");
+		}
+		
+		try {	
 			Media new_obj = (Media) obj;
 			return new_obj.title == title;
 		}
-		else {
+		catch (ClassCastException e){
+			e.printStackTrace();
+			JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, "Cannot cast to media", "Error", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+		catch (NullPointerException e) {
+			e.printStackTrace();
+			JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, "Argument is null", "Error", JOptionPane.WARNING_MESSAGE);
 			return false;
 		}
 	}

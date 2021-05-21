@@ -1,6 +1,6 @@
 package hust.soict.dsai.aims.media;
 
-import hust.soict.dsai.aims.exception.MediaPlayException;
+import hust.soict.dsai.aims.exception.MediaConstructorException;
 
 public class Disc extends Media{
 	protected int length;
@@ -15,7 +15,7 @@ public class Disc extends Media{
 	}
 
 	public Disc(String title, String category, float cost, String dataAdded, int length,
-			String director) throws MediaPlayException {
+			String director) throws MediaConstructorException {
 		super(title, category, cost, dataAdded);
 		this.length = length;
 		this.director = director;

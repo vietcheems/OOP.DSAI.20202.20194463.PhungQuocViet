@@ -4,7 +4,8 @@ package hust.soict.dsai.aims.media;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import hust.soict.dsai.aims.exception.MediaPlayException;
+import hust.soict.dsai.aims.exception.DigitalVideoDiscPlayException;
+import hust.soict.dsai.aims.exception.MediaConstructorException;
 import hust.soict.dsai.aims.exception.PlayerException;
 
 public class DigitalVideoDisc extends Media implements Playable {
@@ -17,7 +18,7 @@ public class DigitalVideoDisc extends Media implements Playable {
 		return length;
 	}
 	public DigitalVideoDisc(String title, String category, float cost, String dateAdded, String director,
-			int length) throws MediaPlayException {
+			int length) throws MediaConstructorException {
 		super(title, category, cost, dateAdded);
 		this.director = director;
 		this.length = length;
@@ -34,7 +35,7 @@ public class DigitalVideoDisc extends Media implements Playable {
 			System.out.println("DVD length: " + this.getLength());
 		}
 		else {
-			throw new PlayerException("ERROR: DVD length is non-positive");
+			throw new DigitalVideoDiscPlayException("ERROR: DVD length is non-positive");
 		}
 	}
 }

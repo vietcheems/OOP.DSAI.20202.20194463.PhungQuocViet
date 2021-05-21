@@ -11,6 +11,7 @@ import hust.soict.dsai.aims.exception.PlayerException;
 public class CompactDisc extends Disc implements Playable{
 	private String artist;
 	private ArrayList<Track> tracks = new ArrayList<Track>();
+	
 	public CompactDisc(String title, String category, float cost, String dateAdded, int length, String director,
 			String artist, ArrayList<Track> tracks) throws Exception {
 		super(title, category, cost, dateAdded, length, director);
