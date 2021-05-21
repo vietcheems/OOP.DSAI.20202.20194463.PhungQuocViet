@@ -15,7 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class AddBookController {
+public class AddBookToStoreScreenController {
 	
 	private Store store;
 	private Cart cart;
@@ -38,7 +38,7 @@ public class AddBookController {
     @FXML
     private Button btnBackToStore;
     
-    public AddBookController(Store store, Cart cart) {
+    public AddBookToStoreScreenController(Store store, Cart cart) {
 		// TODO Auto-generated constructor stub
     	this.store = store;
     	this.cart = cart;
@@ -70,12 +70,12 @@ public class AddBookController {
     
     @FXML
     void menuItemAddCdClicked(ActionEvent event) {
-    	new AddCd(this.store, this.cart);
+    	new AddCompactDiscToStoreScreen(this.store, this.cart);
     }
 
     @FXML
     void menuItemAddDvdClicked(ActionEvent event) {
-    	new AddDvd(this.store, this.cart);
+    	new AddDigitalVideoDiscToStoreScreen(this.store, this.cart);
     }
 
     @FXML

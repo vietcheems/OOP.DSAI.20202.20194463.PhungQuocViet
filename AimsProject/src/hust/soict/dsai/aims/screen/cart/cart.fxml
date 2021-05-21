@@ -38,9 +38,9 @@
                   <items>
                         <Menu mnemonicParsing="false" text="Update Store">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="Add Book" />
-                              <MenuItem mnemonicParsing="false" text="Add CD" />
-                          <MenuItem mnemonicParsing="false" text="Add DVD" />
+                            <MenuItem fx:id="menuItemAddBook" mnemonicParsing="false" onAction="#menuItemAddBookClicked" text="Add Book" />
+                              <MenuItem fx:id="menuItemAddCd" mnemonicParsing="false" onAction="#menuItemAddCdClicked" text="Add CD" />
+                          <MenuItem fx:id="menuItemAddDvd" mnemonicParsing="false" onAction="#menuItemAddDvdClicked" text="Add DVD" />
                           </items>
                         </Menu>
                         <MenuItem fx:id="menuItemViewStore" mnemonicParsing="false" onAction="#menuItemViewStoreClicked" text="View Store" />
@@ -74,6 +74,11 @@
                      </toggleGroup>
                   </RadioButton>
                   <RadioButton fx:id="radioBtnFilterTitle" mnemonicParsing="false" onAction="#radioBtnFilterTitlePressed" text="By Title" toggleGroup="$filterCategory" />
+                  <Button fx:id="btnSortCart" mnemonicParsing="false" onAction="#btnSortCartPressed" prefHeight="34.0" prefWidth="70.0" text="Sort Cart">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
             <TableView fx:id="tblMedia">

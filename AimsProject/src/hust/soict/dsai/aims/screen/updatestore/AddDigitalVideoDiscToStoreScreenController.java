@@ -17,7 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 
-public class AddDvdController {
+public class AddDigitalVideoDiscToStoreScreenController {
 	private Store store;
 	private Cart cart;
 	
@@ -54,7 +54,7 @@ public class AddDvdController {
     @FXML
     private TextField tfLength;
     
-    public AddDvdController(Store store, Cart cart) {
+    public AddDigitalVideoDiscToStoreScreenController(Store store, Cart cart) {
     	this.store = store;
     	this.cart = cart;
     }
@@ -80,7 +80,7 @@ public class AddDvdController {
     
     @FXML
     void menuItemAddBookClicked(ActionEvent event) {
-    	new AddBook(this.store, this.cart);
+    	new AddBookToStoreScreen(this.store, this.cart);
     }
    
     @FXML
@@ -90,7 +90,7 @@ public class AddDvdController {
 
     @FXML
     void menuItemAddCdClicked(ActionEvent event) {
-    	new AddCd(this.store, this.cart);
+    	new AddCompactDiscToStoreScreen(this.store, this.cart);
     }
 
     @FXML

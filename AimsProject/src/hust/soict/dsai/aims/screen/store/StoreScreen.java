@@ -18,9 +18,9 @@ import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import hust.soict.dsai.aims.media.Track;
 import hust.soict.dsai.aims.screen.cart.CartScreen;
-import hust.soict.dsai.aims.screen.updatestore.AddBook;
-import hust.soict.dsai.aims.screen.updatestore.AddCd;
-import hust.soict.dsai.aims.screen.updatestore.AddDvd;
+import hust.soict.dsai.aims.screen.updatestore.AddBookToStoreScreen;
+import hust.soict.dsai.aims.screen.updatestore.AddCompactDiscToStoreScreen;
+import hust.soict.dsai.aims.screen.updatestore.AddDigitalVideoDiscToStoreScreen;
 import hust.soict.dsai.aims.store.Store;
 
 public class StoreScreen extends JFrame {
@@ -54,6 +54,7 @@ public class StoreScreen extends JFrame {
 		
 		menu.add(smUpdateStore);
 		menu.add(new JMenuItem("View store"));
+		
 		JMenuItem viewCart = new JMenuItem("View cart");
 		viewCart.addActionListener(new ViewCartListener());
 		menu.add(viewCart);
@@ -88,14 +89,13 @@ public class StoreScreen extends JFrame {
 		
 	}
 	
-
 	
 	private class AddCdListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			new AddCd(store, cart);
+			new AddCompactDiscToStoreScreen(store, cart);
 		}
 		
 	}
@@ -105,7 +105,7 @@ public class StoreScreen extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			new AddBook(store, cart);
+			new AddBookToStoreScreen(store, cart);
 		}
 		
 	}
@@ -115,7 +115,7 @@ public class StoreScreen extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			new AddDvd(store, cart);
+			new AddDigitalVideoDiscToStoreScreen(store, cart);
 		}
 		
 	}
@@ -166,7 +166,7 @@ public class StoreScreen extends JFrame {
 				container.add(playButton);
 			}
 			
-			JButton removeButton = new JButton("Remove media from store");
+			JButton removeButton = new JButton("Remove from store");
 			removeButton.addActionListener(new RemoveMediaFromStoreListener());
 			container.add(removeButton);
 			

@@ -16,10 +16,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class AddBook extends JFrame {
+public class AddBookToStoreScreen extends JFrame {
 	private Cart cart;
 	private Store store;
-	public AddBook(Store store, Cart cart) {
+	public AddBookToStoreScreen(Store store, Cart cart) {
 		this.store = store;
 		this.cart = cart;	
 		JFXPanel fxPanel = new JFXPanel();
@@ -33,8 +33,8 @@ public class AddBook extends JFrame {
 				try {
 					FXMLLoader loader = new FXMLLoader(getClass()
 							.getResource("/hust/soict/dsai/aims/screen/updatestore/addBook.fxml"));
-					AddBookController controller = 
-							new AddBookController(store, cart);
+					AddBookToStoreScreenController controller = 
+							new AddBookToStoreScreenController(store, cart);
 					loader.setController(controller);
 					Parent root = loader.load();
 					fxPanel.setScene(new Scene(root));

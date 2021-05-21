@@ -10,6 +10,9 @@ import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import hust.soict.dsai.aims.screen.store.StoreScreen;
+import hust.soict.dsai.aims.screen.updatestore.AddBookToStoreScreen;
+import hust.soict.dsai.aims.screen.updatestore.AddCompactDiscToStoreScreen;
+import hust.soict.dsai.aims.screen.updatestore.AddDigitalVideoDiscToStoreScreen;
 import hust.soict.dsai.aims.store.Store;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -33,6 +36,9 @@ public class CartScreenController {
 	private Cart cart;
 	private FilteredList<Media> filteredData;
 	private boolean filterById;
+	
+	@FXML 
+	private Button btnSortCart;
 	
 	@FXML
 	private BorderPane borderPane;
@@ -192,5 +198,26 @@ public class CartScreenController {
     @FXML
     void menuItemViewStoreClicked(ActionEvent event) {
 		new StoreScreen(this.store, this.cart);
+    }
+    
+
+    @FXML
+    void menuItemAddBookClicked(ActionEvent event) {
+    	new AddBookToStoreScreen(this.store, this.cart);
+    }
+
+    @FXML
+    void menuItemAddCdClicked(ActionEvent event) {
+    	new AddCompactDiscToStoreScreen(this.store, this.cart);
+    }
+
+    @FXML
+    void menuItemAddDvdClicked(ActionEvent event) {
+    	new AddDigitalVideoDiscToStoreScreen(this.store, this.cart);
+    }
+    
+    @FXML
+    void btnSortCartPressed(ActionEvent event) {
+    	this.cart.sortByTitleCost();
     }
 }

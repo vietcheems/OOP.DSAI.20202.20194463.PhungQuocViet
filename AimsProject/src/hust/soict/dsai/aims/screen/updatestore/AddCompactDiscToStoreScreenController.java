@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import hust.soict.dsai.aims.screen.updatestore.AddBook;
+import hust.soict.dsai.aims.screen.updatestore.AddBookToStoreScreen;
 import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.Track;
@@ -17,7 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 
-public class AddCdController {
+public class AddCompactDiscToStoreScreenController {
 	private Store store;
 	private Cart cart;
 	private ArrayList<Track> tracks = new ArrayList<Track>();
@@ -67,7 +67,7 @@ public class AddCdController {
     @FXML
     private MenuItem menuItemAddBook;
     
-    public AddCdController(Store store, Cart cart) {
+    public AddCompactDiscToStoreScreenController(Store store, Cart cart) {
 		// TODO Auto-generated constructor stub
     	this.cart = cart;
     	this.store = store;
@@ -112,12 +112,12 @@ public class AddCdController {
 
     @FXML
     void menuItemAddBookClicked(ActionEvent event) {
-    	new AddBook(this.store, this.cart);
+    	new AddBookToStoreScreen(this.store, this.cart);
     }
 
     @FXML
     void menuItemAddDvdClicked(ActionEvent event) {
-    	new AddDvd(this.store, this.cart);
+    	new AddDigitalVideoDiscToStoreScreen(this.store, this.cart);
     }
 
     @FXML
