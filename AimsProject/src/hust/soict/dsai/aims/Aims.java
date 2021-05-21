@@ -3,7 +3,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.naming.LimitExceededException;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Book;
 import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
@@ -17,12 +22,36 @@ public class Aims {
 		Cart cart = new Cart();
 		Store store = new Store();
 		
-		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King",
-				"Animation", 19.95f, "1/1/2021", "Roger Allers", 87);
-		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars",
-				"Science Fiction", 24.95f, "1/1/2021", "George Lucas", 87);
-		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin",
-				"Animation", 18.99f, "1/1/2021/", "Someone", 100);
+		DigitalVideoDisc dvd1 = null;
+		try {
+			dvd1 = new DigitalVideoDisc("The Lion King",
+					"Animation", 19.95f, "1/1/2021", "Roger Allers", 87);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+		}
+		DigitalVideoDisc dvd2 = null;
+		try {
+			dvd2 = new DigitalVideoDisc("Star Wars",
+					"Science Fiction", 24.95f, "1/1/2021", "George Lucas", 87);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+		}
+		DigitalVideoDisc dvd3 = null;
+		try {
+			dvd3 = new DigitalVideoDisc("Aladin",
+					"Animation", 18.99f, "1/1/2021/", "Someone", 100);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+		}
 
 //		List<String> authors = new ArrayList<String>();
 //		authors.add("Dr.Nguyen Thieu Huy");
@@ -30,7 +59,14 @@ public class Aims {
 		
 		DigitalVideoDisc[] dvdList = {dvd1, dvd2, dvd3};
 		for (DigitalVideoDisc dvd : dvdList) {
-			store.addMedia(dvd);
+			try {
+				store.addMedia(dvd);
+			} catch (LimitExceededException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				JFrame f = new JFrame();
+				JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+			}
 		}
 //		store.addMedia(b);
 		
@@ -67,11 +103,25 @@ public class Aims {
 							if (play.equals("y")) {
 								if (m.getClass().equals(DigitalVideoDisc.class)) {
 									DigitalVideoDisc item = (DigitalVideoDisc) m;
-									item.play();
+									try {
+										item.play();
+									} catch (PlayerException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+										JFrame f = new JFrame();
+										JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+									}
 								}
 								else if (m.getClass().equals(CompactDisc.class)) {
 									CompactDisc item = (CompactDisc) m;
-									item.play();
+									try {
+										item.play();
+									} catch (PlayerException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+										JFrame f = new JFrame();
+										JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+									}
 								}
 							}
 							else if (play.equals("n")) {
@@ -86,7 +136,14 @@ public class Aims {
 							System.out.println("Add this media to cart?(y/n)");
 							String addToCart = sc.nextLine();
 							if (addToCart.equals("y")) {
-								cart.addMedia(m);
+								try {
+									cart.addMedia(m);
+								} catch (LimitExceededException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+									JFrame f = new JFrame();
+									JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+								}
 								cart.printList();
 							}
 							else if (addToCart.equals("n")) {
@@ -104,7 +161,14 @@ public class Aims {
 						title1 = sc.nextLine();
 						if (store.searchByTitle(title1)) {
 							Media m = store.getMediaByTitle(title1);
-							cart.addMedia(m);
+							try {
+								cart.addMedia(m);
+							} catch (LimitExceededException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								JFrame f = new JFrame();
+								JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+							}
 							cart.printList();
 						}
 						break;
@@ -117,11 +181,25 @@ public class Aims {
 							Media m = store.getMediaByTitle(title2);
 							if (m.getClass().equals(DigitalVideoDisc.class)) {
 								DigitalVideoDisc item = (DigitalVideoDisc) m;
-								item.play();
+								try {
+									item.play();
+								} catch (PlayerException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+									JFrame f = new JFrame();
+									JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+								}
 							}
 							else if (m.getClass().equals(CompactDisc.class)) {
 								CompactDisc item = (CompactDisc) m;
-								item.play();
+								try {
+									item.play();
+								} catch (PlayerException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+									JFrame f = new JFrame();
+									JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+								}
 							}
 							else System.out.println("Media not playable");
 						}
@@ -181,9 +259,24 @@ public class Aims {
 							System.out.println("Length:");
 							length = Integer.valueOf(sc.nextLine());
 							
-							DigitalVideoDisc dvd = new DigitalVideoDisc(titledvd, category, cost, dateAdded, director,
-									length);
-							store.addMedia(dvd);
+							DigitalVideoDisc dvd = null;
+							try {
+								dvd = new DigitalVideoDisc(titledvd, category, cost, dateAdded, director,
+										length);
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								JFrame f = new JFrame();
+								JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+							}
+							try {
+								store.addMedia(dvd);
+							} catch (LimitExceededException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								JFrame f = new JFrame();
+								JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+							}
 							break;
 						case 2:
 							String titlebook;
@@ -204,8 +297,23 @@ public class Aims {
 							author = sc.nextLine();
 							List<String> authors = new ArrayList<String>();
 							authors.add(author);
-							Book book = new Book(titlebook, categorybook, costbook, dateAddedbook, authors);
-							store.addMedia(book);
+							Book book = null;
+							try {
+								book = new Book(titlebook, categorybook, costbook, dateAddedbook, authors);
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								JFrame f = new JFrame();
+								JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+							}
+							try {
+								store.addMedia(book);
+							} catch (LimitExceededException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								JFrame f = new JFrame();
+								JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+							}
 							break;
 						case 3:
 							String titlecd;
@@ -232,9 +340,24 @@ public class Aims {
 							ArrayList<Track> tracks = new ArrayList<Track>();
 							Track track = new Track(titlecd, lengthcd);
 							tracks.add(track);
-							CompactDisc cd =  new CompactDisc(titlecd, categorycd, costcd, dateAddedcd, lengthcd, directorcd,
-									artist, tracks);
-							store.addMedia(cd);
+							CompactDisc cd = null;
+							try {
+								cd = new CompactDisc(titlecd, categorycd, costcd, dateAddedcd, lengthcd, directorcd,
+										artist, tracks);
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								JFrame f = new JFrame();
+								JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+							}
+							try {
+								store.addMedia(cd);
+							} catch (LimitExceededException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								JFrame f = new JFrame();
+								JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+							}
 							break;
 						case 0:
 							System.out.println("Exiting");
@@ -249,7 +372,14 @@ public class Aims {
 						title5 = sc.nextLine();
 						if (store.searchByTitle(title5)) {
 							Media m = store.getMediaByTitle(title5);
-							store.removeMedia(m);
+							try {
+								store.removeMedia(m);
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								JFrame f = new JFrame();
+								JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+							}
 						}
 						break;
 					case 0:
@@ -308,7 +438,14 @@ public class Aims {
 						title7 = sc.nextLine();
 						if (cart.searchByTitle(title7)) {
 							Media m = store.getMediaByTitle(title7);
-							cart.removeMedia(m);
+							try {
+								cart.removeMedia(m);
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								JFrame f = new JFrame();
+								JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+							}
 						}
 						break;
 					//play a media
@@ -321,11 +458,25 @@ public class Aims {
 							Media m = cart.getMediaByTitle(title5);
 							if (m.getClass().equals(DigitalVideoDisc.class)) {
 								DigitalVideoDisc item = (DigitalVideoDisc) m;
-								item.play();
+								try {
+									item.play();
+								} catch (PlayerException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+									JFrame f = new JFrame();
+									JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+								}
 							}
 							else if (m.getClass().equals(CompactDisc.class)) {
 								CompactDisc item = (CompactDisc) m;
-								item.play();
+								try {
+									item.play();
+								} catch (PlayerException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+									JFrame f = new JFrame();
+									JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+								}
 							}
 							else System.out.println("Media not playable");
 						}

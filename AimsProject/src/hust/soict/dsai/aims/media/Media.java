@@ -2,6 +2,7 @@ package hust.soict.dsai.aims.media;
 
 import java.util.Comparator;
 
+import hust.soict.dsai.aims.exception.MediaPlayException;
 import hust.soict.dsai.aims.media.comparator.MediaComparatorByCostTitle;
 import hust.soict.dsai.aims.media.comparator.MediaComparatorByTitleCost;
 
@@ -37,8 +38,8 @@ public abstract class Media {
 		return dateAdded;
 	}
 
-	public Media(String title, String category, float cost, String dateAdded) throws Exception{
-		if (cost <= 0) throw new Exception("Cost can be non-positive");
+	public Media(String title, String category, float cost, String dateAdded) throws MediaPlayException {
+		if (cost <= 0) throw new MediaPlayException("Cost can be non-positive");
 		this.id = ++idGiver;
 		this.title = title;
 		this.category = category;

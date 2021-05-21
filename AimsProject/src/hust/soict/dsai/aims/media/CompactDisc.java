@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import hust.soict.dsai.aims.exception.CompactDiscPlayException;
 import hust.soict.dsai.aims.exception.PlayerException;
 
 public class CompactDisc extends Disc implements Playable{
@@ -64,7 +65,7 @@ public class CompactDisc extends Disc implements Playable{
 				}
 			}
 		} else {
-			throw new PlayerException("ERROR: CD length is non-positive");
+			throw new CompactDiscPlayException("ERROR: CD length is non-positive");
 		}
 	}
 	public String toStringl() {

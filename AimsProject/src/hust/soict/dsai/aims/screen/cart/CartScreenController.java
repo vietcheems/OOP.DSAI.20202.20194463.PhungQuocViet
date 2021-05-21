@@ -154,7 +154,14 @@ public class CartScreenController {
 	@FXML
 	void btnRemovePressed(ActionEvent event) {
 		Media media = tblMedia.getSelectionModel().getSelectedItem();
-		cart.removeMedia(media);
+		try {
+			cart.removeMedia(media);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+		}
 		totalCost.setText(String.valueOf(cart.totalCost()) + "$");
 	}
 	

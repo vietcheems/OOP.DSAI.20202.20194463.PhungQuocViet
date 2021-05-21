@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import hust.soict.dsai.aims.exception.PlayerException;
+import hust.soict.dsai.aims.exception.TrackPlayException;
 
 public class Track implements Playable{
 	private String title;
@@ -25,7 +26,7 @@ public class Track implements Playable{
 		this.title = title;
 		this.length = length;
 	}
-	public void play() throws PlayerException {
+	public void play() throws TrackPlayException {
 		if (this.getLength() > 0) {
 			JFrame f = new JFrame();
 			JOptionPane.showMessageDialog(f, "Playing Track: " + this.getTitle() + "\n" + "Track length: " + this.getLength(), "Playing Track", JOptionPane.INFORMATION_MESSAGE);
@@ -33,7 +34,7 @@ public class Track implements Playable{
 			System.out.println("Track length: " + this.getLength());
 		}
 		else {
-			throw new PlayerException("ERROR: Track length is non-positive");
+			throw new TrackPlayException("ERROR: Track length is non-positive");
 		}
 	}
 	public boolean equals(Object obj) {
