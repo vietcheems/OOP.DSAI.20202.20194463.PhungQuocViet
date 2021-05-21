@@ -37,7 +37,8 @@ public abstract class Media {
 		return dateAdded;
 	}
 
-	public Media(String title, String category, float cost, String dateAdded) {
+	public Media(String title, String category, float cost, String dateAdded) throws Exception{
+		if (cost <= 0) throw new Exception("Cost can be non-positive");
 		this.id = ++idGiver;
 		this.title = title;
 		this.category = category;

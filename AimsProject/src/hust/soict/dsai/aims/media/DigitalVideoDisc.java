@@ -16,7 +16,7 @@ public class DigitalVideoDisc extends Media implements Playable{
 		return length;
 	}
 	public DigitalVideoDisc(String title, String category, float cost, String dateAdded, String director,
-			int length) {
+			int length) throws Exception {
 		super(title, category, cost, dateAdded);
 		this.director = director;
 		this.length = length;

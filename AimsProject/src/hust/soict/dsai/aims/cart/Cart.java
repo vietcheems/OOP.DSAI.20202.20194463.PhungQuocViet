@@ -2,6 +2,8 @@ package hust.soict.dsai.aims.cart;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.naming.LimitExceededException;
+
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 import javafx.collections.FXCollections;
@@ -53,30 +55,21 @@ public class Cart {
 		return found;
 	}
 	
-	public boolean addMedia(Media item) {
-		if (itemsOrdered.size() == MAX_NUMBERS_ORDERED) {
-			System.out.println("The cart is full");
-			return false;
+	public boolean addMedia(Media item) throws LimitExceededException {
+		if (itemsOrdered.size() < MAX_NUMBERS_ORDERED) {
+			itemsOrdered.add(item);
+			System.out.println("Added successfully");
+			return true;
 		}
 		else {
-			int index = itemsOrdered.indexOf(item);
-			if (index == -1) {
-				itemsOrdered.add(item);
-				System.out.println("Added successfully");
-				return true;
-			}
-			else {
-				System.out.println("Item already in the cart");
-				return false;
-			}
+			throw new LimitExceededException("ERROR: The number of media has reached its limit");
 		}
 	}
 	
-	public boolean removeMedia(Media item) {
+	public boolean removeMedia(Media item) throws Exception {
 		int index = itemsOrdered.indexOf(item);
 		if (index == -1) {
-			System.out.println("Item is not in the cart");
-			return false;
+			throw new Exception("Item is not in the cart");
 		}
 		else {
 			itemsOrdered.remove(index);

@@ -10,7 +10,7 @@ public class Book extends Media{
 		return authors;
 	}
 	
-	public boolean addAuthor(String authorName) {
+	public boolean addAuthor(String authorName) throws Exception {
 		int index = authors.indexOf(authorName);
 		if (index == -1) {
 			authors.add(authorName);
@@ -19,14 +19,16 @@ public class Book extends Media{
 		}
 		else {
 			System.out.println(authorName + " is already an author of " + title);
-			return false;
+			throw new Exception(authorName + " is already an author of " + title);
+			
 		}
 	}
-	public boolean removeAuthor(String authorName) {
+	
+	public boolean removeAuthor(String authorName) throws Exception {
 		int index = authors.indexOf(authorName);
 		if (index == -1) {
 			System.out.println(authorName + " is not an author of " + title);
-			return false;
+			throw new Exception(authorName + " is not an author of " + title);
 		}
 		else {
 			authors.remove(index);
@@ -34,7 +36,8 @@ public class Book extends Media{
 			return true;
 		}
 	}
-	public Book(String title, String category, float cost, String dateAdded, List<String> authors) {
+	
+	public Book(String title, String category, float cost, String dateAdded, List<String> authors) throws Exception {
 		super(title, category, cost, dateAdded);
 		this.authors = authors;
 	}

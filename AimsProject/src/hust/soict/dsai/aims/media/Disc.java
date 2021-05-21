@@ -13,7 +13,7 @@ public class Disc extends Media{
 	}
 
 	public Disc(String title, String category, float cost, String dataAdded, int length,
-			String director) {
+			String director) throws Exception {
 		super(title, category, cost, dataAdded);
 		this.length = length;
 		this.director = director;

@@ -1,29 +1,27 @@
 package hust.soict.dsai.aims.store;
 import java.util.*;
 
+import javax.naming.LimitExceededException;
+
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 public class Store {
 	public static final int STORAGE = 10000;
 	private ArrayList<Media> itemsInStore =
 			new ArrayList<Media>();
-	public boolean addMedia(Media item) {
-		if (itemsInStore.size() == STORAGE) {
-			System.out.println("The store is full!");
-			return false;
-		}
-		else {
+	public boolean addMedia(Media item) throws LimitExceededException {
+		if (itemsInStore.size() < STORAGE) {
 			itemsInStore.add(item);
 			System.out.println("Item added successfully");
 			return true;
-		}
+		} else throw new LimitExceededException("ERROR: The number of media has reached its limit");
 	}
 	
 	public ArrayList<Media> getItemsInStore() {
 		return itemsInStore;
 	}
 
-	public boolean removeMedia(Media item) {
+	public boolean removeMedia(Media item) throws Exception {
 		if (itemsInStore.contains(item)) {
 			itemsInStore.remove(item);
 			System.out.println("Item removed successfully");
@@ -31,7 +29,7 @@ public class Store {
 		}
 		else {
 			System.out.println("Item is not in the store");
-			return false;
+			throw new Exception("Item is not in the store");
 		}
 	}
 	
