@@ -4,9 +4,10 @@ package hust.soict.dsai.aims.media;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import hust.soict.dsai.aims.exception.MediaPlayException;
 import hust.soict.dsai.aims.exception.PlayerException;
 
-public class DigitalVideoDisc extends Media implements Playable{
+public class DigitalVideoDisc extends Media implements Playable {
 	private String director;
 	private int length;
 	public String getDirector() {
@@ -16,7 +17,7 @@ public class DigitalVideoDisc extends Media implements Playable{
 		return length;
 	}
 	public DigitalVideoDisc(String title, String category, float cost, String dateAdded, String director,
-			int length) throws Exception {
+			int length) throws MediaPlayException {
 		super(title, category, cost, dateAdded);
 		this.director = director;
 		this.length = length;

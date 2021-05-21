@@ -25,7 +25,7 @@ public class Aims {
 		DigitalVideoDisc dvd1 = null;
 		try {
 			dvd1 = new DigitalVideoDisc("The Lion King",
-					"Animation", 19.95f, "1/1/2021", "Roger Allers", 87);
+					"Animation", 19.95f, "1/1/2021", "Roger Allers", -1);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -361,6 +361,7 @@ public class Aims {
 							break;
 						case 0:
 							System.out.println("Exiting");
+							notDone3 = true;
 							break;
 						default:
 							System.out.println("Not an available option.");
