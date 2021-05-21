@@ -3,6 +3,7 @@ import java.util.*;
 
 import javax.naming.LimitExceededException;
 
+import hust.soict.dsai.aims.exception.RemoveMediaException;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 public class Store {
@@ -21,7 +22,7 @@ public class Store {
 		return itemsInStore;
 	}
 
-	public boolean removeMedia(Media item) throws Exception {
+	public boolean removeMedia(Media item) throws RemoveMediaException {
 		if (itemsInStore.contains(item)) {
 			itemsInStore.remove(item);
 			System.out.println("Item removed successfully");
@@ -29,7 +30,7 @@ public class Store {
 		}
 		else {
 			System.out.println("Item is not in the store");
-			throw new Exception("Item is not in the store");
+			throw new RemoveMediaException("Item is not in the store");
 		}
 	}
 	

@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import hust.soict.dsai.aims.exception.CompactDiscPlayException;
+import hust.soict.dsai.aims.exception.MediaConstructorException;
 import hust.soict.dsai.aims.exception.PlayerException;
 
 public class CompactDisc extends Disc implements Playable{
@@ -13,7 +14,7 @@ public class CompactDisc extends Disc implements Playable{
 	private ArrayList<Track> tracks = new ArrayList<Track>();
 	
 	public CompactDisc(String title, String category, float cost, String dateAdded, int length, String director,
-			String artist, ArrayList<Track> tracks) throws Exception {
+			String artist, ArrayList<Track> tracks) throws MediaConstructorException {
 		super(title, category, cost, dateAdded, length, director);
 		this.artist = artist;
 		this.tracks = tracks;

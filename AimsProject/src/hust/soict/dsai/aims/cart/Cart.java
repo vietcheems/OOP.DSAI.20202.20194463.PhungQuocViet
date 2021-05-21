@@ -4,6 +4,7 @@ import java.util.Collections;
 
 import javax.naming.LimitExceededException;
 
+import hust.soict.dsai.aims.exception.RemoveMediaException;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 import javafx.collections.FXCollections;
@@ -66,10 +67,10 @@ public class Cart {
 		}
 	}
 	
-	public boolean removeMedia(Media item) throws Exception {
+	public boolean removeMedia(Media item) throws RemoveMediaException {
 		int index = itemsOrdered.indexOf(item);
 		if (index == -1) {
-			throw new Exception("Item is not in the cart");
+			throw new RemoveMediaException("Item is not in the cart");
 		}
 		else {
 			itemsOrdered.remove(index);

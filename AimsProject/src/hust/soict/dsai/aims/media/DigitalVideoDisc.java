@@ -27,7 +27,7 @@ public class DigitalVideoDisc extends Media implements Playable {
 		String str = String.valueOf(id) + ". DVD - " + title + " - " + category + " - " + director + " - " + String.valueOf(length) + " - " + String.valueOf(cost) + "$";
 		return str;
 	}
-	public void play() throws PlayerException {
+	public void play() throws DigitalVideoDiscPlayException {
 		if (this.getLength() > 0) {
 			JFrame f = new JFrame();
 			JOptionPane.showMessageDialog(f, "Playing DVD: " + this.getTitle() + "\n" + "DVD length: " + this.getLength(), "Playing DVD", JOptionPane.INFORMATION_MESSAGE);
