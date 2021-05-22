@@ -44,10 +44,10 @@ public class AddBookToStoreScreen extends JFrame {
 			}
 		});
 }
-//	public static void main(String[] args) {
-//		Store store = new Store();
-//		Cart cart = new Cart();
-//		new AddBook(cart, store);
-//
-//	}
+	public static void main(String[] args) {
+		Store store = new Store();
+		Cart cart = new Cart();
+		new AddBookToStoreScreen(store, cart);
+
+	}
 }

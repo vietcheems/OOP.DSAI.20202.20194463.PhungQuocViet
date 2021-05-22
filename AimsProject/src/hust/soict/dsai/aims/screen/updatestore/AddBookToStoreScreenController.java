@@ -3,6 +3,7 @@ package hust.soict.dsai.aims.screen.updatestore;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.LimitExceededException;
 import javax.swing.JOptionPane;
 
 import hust.soict.dsai.aims.cart.Cart;
@@ -54,13 +55,22 @@ public class AddBookToStoreScreenController {
     	for (String author:tfAuthor.getText().split(",")) {
     		authors.add(author.trim());
     	}
-    	Book b = new Book(title, category, cost, dateAdded, authors);
-    	this.store.addMedia(b);
-    	JOptionPane.showMessageDialog(null, "Book added successfully");
-    	tfTitle.setText("");
-    	tfCategory.setText("");
-    	tfCost.setText("");
-    	tfAuthor.setText("");
+    	try {
+        	Book b = new Book(title, category, cost, dateAdded, authors);
+			this.store.addMedia(b);
+	    	JOptionPane.showMessageDialog(null, "Book added successfully");
+	    	tfTitle.setText("");
+	    	tfCategory.setText("");
+	    	tfCost.setText("");
+	    	tfAuthor.setText("");
+		} catch (LimitExceededException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
     }
     
     @FXML

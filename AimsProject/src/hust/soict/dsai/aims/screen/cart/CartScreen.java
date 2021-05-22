@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 public class CartScreen extends JFrame {
 	private Cart cart;
 	private Store store;
+	private static JFXPanel fxPanel;
 	public CartScreen(Cart cart, Store store) {
 		super();
 		

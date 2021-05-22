@@ -52,26 +52,26 @@ public abstract class Media {
 	
 	public abstract String toString();
 	
-	public boolean equals(Object obj){
+	public boolean equals(Object obj) {
 		if (obj == null) {
-			throw new NullPointerException("Media is null");
-		}
-		
-		try {	
-			Media new_obj = (Media) obj;
-			return new_obj.title == title;
-		}
-		catch (ClassCastException e){
-			e.printStackTrace();
-			JFrame f = new JFrame();
-			JOptionPane.showMessageDialog(f, "Cannot cast to media", "Error", JOptionPane.WARNING_MESSAGE);
 			return false;
-		}
-		catch (NullPointerException e) {
-			e.printStackTrace();
-			JFrame f = new JFrame();
-			JOptionPane.showMessageDialog(f, "Argument is null", "Error", JOptionPane.WARNING_MESSAGE);
-			return false;
+		} else {
+			try {	
+				Media new_obj = (Media) obj;
+				return new_obj.title == title;
+			}
+			catch (ClassCastException e){
+				e.printStackTrace();
+				JFrame f = new JFrame();
+				JOptionPane.showMessageDialog(f, "Cannot cast to media", "Error", JOptionPane.WARNING_MESSAGE);
+				return false;
+			}
+			catch (NullPointerException e) {
+				e.printStackTrace();
+				JFrame f = new JFrame();
+				JOptionPane.showMessageDialog(f, "Argument is null", "Error", JOptionPane.WARNING_MESSAGE);
+				return false;
+			}
 		}
 	}
 

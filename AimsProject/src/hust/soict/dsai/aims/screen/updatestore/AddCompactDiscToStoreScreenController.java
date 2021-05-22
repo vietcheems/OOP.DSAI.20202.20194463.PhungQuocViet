@@ -2,10 +2,12 @@ package hust.soict.dsai.aims.screen.updatestore;
 
 import java.util.ArrayList;
 
+import javax.naming.LimitExceededException;
 import javax.swing.JOptionPane;
 
 import hust.soict.dsai.aims.screen.updatestore.AddBookToStoreScreen;
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.MediaConstructorException;
 import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.Track;
 import hust.soict.dsai.aims.screen.cart.CartScreen;
@@ -95,14 +97,24 @@ public class AddCompactDiscToStoreScreenController {
     		cdLength += track.getLength();
     	}
     	JOptionPane.showMessageDialog(null, "CD added successfully");
-    	CompactDisc cd = new CompactDisc(title, category, cost, dateAdded, cdLength, director, artist, tracks);
-    	this.store.addMedia(cd);
-    	this.tracks = new ArrayList<Track>();
-    	tfTitle.setText("");
-    	tfCategory.setText("");
-    	tfCost.setText("");
-    	tfDirector.setText("");
-    	tfArtist.setText("");
+    	CompactDisc cd;
+		try {
+			cd = new CompactDisc(title, category, cost, dateAdded, cdLength, director, artist, tracks);
+	    	this.store.addMedia(cd);
+	    	this.tracks = new ArrayList<Track>();
+	    	tfTitle.setText("");
+	    	tfCategory.setText("");
+	    	tfCost.setText("");
+	    	tfDirector.setText("");
+	    	tfArtist.setText("");
+		} catch (MediaConstructorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LimitExceededException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
     }
 
     @FXML

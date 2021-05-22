@@ -274,97 +274,97 @@ public class StoreScreen extends JFrame {
 		Track track2 = new Track("Track2", 50);
 		tracks.add(track1);
 		tracks.add(track2);
-		CompactDisc cd = null;
 		try {
-			cd = new CompactDisc("Some CD name idk", "Pop", 50f, "20/01/2001", 100, "Someone chad", "Someone cheems",
+			CompactDisc cd = new CompactDisc("Some CD name idk", "Pop", 50f, "20/01/2001", 100, "Someone chad", "Someone cheems",
 					tracks);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		DigitalVideoDisc dvd1 = null;
-		try {
-			dvd1 = new DigitalVideoDisc("The Lion King",
-					"Animation", 19.8f, "1/1/2021", "Roger Allers", 87);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			JFrame f = new JFrame();
-			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
-		}
-		DigitalVideoDisc dvd2 = null;
-		try {
-			dvd2 = new DigitalVideoDisc("Star Wars",
-					"Science Fiction", 24.95f, "1/1/2021", "George Lucas", 87);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			JFrame f = new JFrame();
-			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
-		}
-		DigitalVideoDisc dvd3 = null;
-		try {
-			dvd3 = new DigitalVideoDisc("Aladin",
-					"Animation", 18.99f, "1/1/2021/", "Someone", 100);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			JFrame f = new JFrame();
-			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
-		}
-		
-		List<String> authors = new ArrayList<String>();
-		authors.add("Dr.Nguyen Thieu Huy");
-		Book b = null;
-		try {
-			b = new Book("Lecture on Algebra", "Textbook", 10.0f, "1/1/2021", authors);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			JFrame f = new JFrame();
-			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
-		}
-		
-		try {
-			store.addMedia(dvd1);
-		} catch (LimitExceededException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			JFrame f = new JFrame();
-			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
-		}
-		try {
-			store.addMedia(dvd2);
-		} catch (LimitExceededException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			JFrame f = new JFrame();
-			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
-		}
-		try {
-			store.addMedia(dvd3);
-		} catch (LimitExceededException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			JFrame f = new JFrame();
-			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
-		}
-		try {
-			store.addMedia(b);
-		} catch (LimitExceededException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			JFrame f = new JFrame();
-			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
-		}
-		try {
 			store.addMedia(cd);
-		} catch (LimitExceededException e) {
+
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			JFrame f = new JFrame();
 			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
 		}
+
+		try {
+			DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King",
+					"Animation", 19.8f, "1/1/2021", "Roger Allers", 87);
+			store.addMedia(dvd1);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JFrame f1 = new JFrame();
+			JOptionPane.showMessageDialog(f1, e1.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+		}
+		
+		try {
+			DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars",
+					"Science Fiction", 24.95f, "1/1/2021", "George Lucas", 87);
+			store.addMedia(dvd2);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JFrame f1 = new JFrame();
+			JOptionPane.showMessageDialog(f1, e1.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+		}
+		try {
+			DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin",
+					"Animation", 18.99f, "1/1/2021/", "Someone", 100);
+			store.addMedia(dvd3);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JFrame f1 = new JFrame();
+			JOptionPane.showMessageDialog(f1, e1.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+		}
+		
+
+		
+		try {
+			List<String> authors = new ArrayList<String>();
+			authors.add("Dr.Nguyen Thieu Huy");
+			Book b = new Book("Lecture on Algebra", "Textbook", 10.0f, "1/1/2021", authors);
+			store.addMedia(b);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JFrame f1 = new JFrame();
+			JOptionPane.showMessageDialog(f1, e1.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+		}
+		
+//		try {
+//			store.addMedia(dvd1);
+//		} catch (LimitExceededException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			JFrame f = new JFrame();
+//			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+//		}
+//		try {
+//			store.addMedia(dvd2);
+//		} catch (LimitExceededException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			JFrame f = new JFrame();
+//			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+//		}
+//		try {
+//			store.addMedia(dvd3);
+//		} catch (LimitExceededException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			JFrame f = new JFrame();
+//			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+//		}
+//		try {
+//			store.addMedia(b);
+//		} catch (LimitExceededException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			JFrame f = new JFrame();
+//			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+//		}
+
 		new StoreScreen(store, cart);
 	}
 

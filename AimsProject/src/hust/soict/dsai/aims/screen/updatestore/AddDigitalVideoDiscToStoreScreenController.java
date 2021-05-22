@@ -67,15 +67,19 @@ public class AddDigitalVideoDiscToStoreScreenController {
     	String dateAdded = String.valueOf(java.time.LocalDateTime.now());
     	String director = tfDirector.getText();
     	Integer length = Integer.valueOf(tfLength.getText());
-    	DigitalVideoDisc dvd = new DigitalVideoDisc(title, category, cost, dateAdded, director, length);
-    	this.store.addMedia(dvd);
-    	JOptionPane.showMessageDialog(null, "DVD added successfully");
-    	
-    	tfTitle.setText("");
-    	tfCategory.setText("");
-    	tfCost.setText("");
-    	tfDirector.setText("");
-    	tfLength.setText("");
+    	try {
+	    	DigitalVideoDisc dvd = new DigitalVideoDisc(title, category, cost, dateAdded, director, length);
+	    	this.store.addMedia(dvd);
+	    	JOptionPane.showMessageDialog(null, "DVD added successfully");
+	    	tfTitle.setText("");
+	    	tfCategory.setText("");
+	    	tfCost.setText("");
+	    	tfDirector.setText("");
+	    	tfLength.setText("");
+    	}
+    	catch (Exception e) {
+    		
+    	}
     }
     
     @FXML

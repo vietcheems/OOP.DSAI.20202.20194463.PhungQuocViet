@@ -16,6 +16,7 @@ import hust.soict.dsai.aims.screen.updatestore.AddDigitalVideoDiscToStoreScreen;
 import hust.soict.dsai.aims.store.Store;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -86,7 +87,7 @@ public class CartScreenController {
 	
 	@FXML
 	private void initialize() {
-		totalCost.setText(String.valueOf(cart.totalCost()) + "$");
+		totalCost.setText(String.valueOf(this.cart.totalCost()) + "$");
 		colMediaTitle.setCellValueFactory(
 				new PropertyValueFactory<Media, String>("title"));
 		colMediaCategory.setCellValueFactory(
@@ -154,15 +155,16 @@ public class CartScreenController {
 	@FXML
 	void btnRemovePressed(ActionEvent event) {
 		Media media = tblMedia.getSelectionModel().getSelectedItem();
-		try {
-			cart.removeMedia(media);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			JFrame f = new JFrame();
-			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
-		}
-		totalCost.setText(String.valueOf(cart.totalCost()) + "$");
+		if (!this.cart.getItemsOrdered().isEmpty())
+			try {
+				cart.removeMedia(media);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				JFrame f = new JFrame();
+				JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+			}
+			totalCost.setText(String.valueOf(cart.totalCost()) + "$");
 	}
 	
     @FXML
@@ -197,9 +199,16 @@ public class CartScreenController {
     
     @FXML
     void btnPlaceOrderPressed(ActionEvent event) {
-    	this.cart.emptyCart();
-    	JFrame f = new JFrame();
-		JOptionPane.showMessageDialog(f, "Order placed successfully", "Place Order", JOptionPane.INFORMATION_MESSAGE);
+    	if (this.cart.getItemsOrdered().isEmpty()) {
+    		System.out.println("Cart is empty");
+    		JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, "Cart is empty", "Place Order", JOptionPane.INFORMATION_MESSAGE);
+    	} else {
+	    	this.cart.emptyCart();
+	    	JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, "Order placed successfully", "Place Order", JOptionPane.INFORMATION_MESSAGE);
+			totalCost.setText(String.valueOf(this.cart.totalCost()) + "$");
+    	}
     }
     
     @FXML
