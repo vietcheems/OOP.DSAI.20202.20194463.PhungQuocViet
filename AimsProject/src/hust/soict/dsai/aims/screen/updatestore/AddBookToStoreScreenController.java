@@ -1,12 +1,17 @@
 package hust.soict.dsai.aims.screen.updatestore;
 
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.LimitExceededException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.EmptyInputException;
+import hust.soict.dsai.aims.exception.NonPositiveCostException;
 import hust.soict.dsai.aims.media.Book;
 import hust.soict.dsai.aims.screen.cart.CartScreen;
 import hust.soict.dsai.aims.screen.store.StoreScreen;
@@ -47,15 +52,17 @@ public class AddBookToStoreScreenController {
     
     @FXML
     void btnAddToStorePressed(ActionEvent event) {
-    	String title = tfTitle.getText();
-    	String category = tfCategory.getText();
-    	Float cost = Float.valueOf(tfCost.getText());
-    	String dateAdded = String.valueOf(java.time.LocalDateTime.now());
-    	List<String> authors = new ArrayList<String>();
-    	for (String author:tfAuthor.getText().split(",")) {
-    		authors.add(author.trim());
-    	}
     	try {
+        	String title = tfTitle.getText();
+        	String category = tfCategory.getText();
+        	Float cost = Float.valueOf(tfCost.getText());
+        	String dateAdded = String.valueOf(java.time.LocalDateTime.now());
+        	if (tfAuthor.getText().length() == 0) throw new EmptyInputException("Authors cannot be empty");
+        	List<String> authors = new ArrayList<String>();
+        	for (String author:tfAuthor.getText().split(",")) {
+        		if (author.trim().isEmpty()) throw new EmptyInputException("Author cannot be empty");
+        		authors.add(author.trim());
+        	}
         	Book b = new Book(title, category, cost, dateAdded, authors);
 			this.store.addMedia(b);
 	    	JOptionPane.showMessageDialog(null, "Book added successfully");
@@ -66,9 +73,22 @@ public class AddBookToStoreScreenController {
 		} catch (LimitExceededException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (Exception e) {
+			JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+		} catch (NonPositiveCostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+		} catch (EmptyInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, e.getMessage(), " Cost Error", JOptionPane.WARNING_MESSAGE);
 		}
 
     }
@@ -76,26 +96,36 @@ public class AddBookToStoreScreenController {
     @FXML
     void btnBackToStorePressed(ActionEvent event) {
     	new StoreScreen(this.store, this.cart);
+		JFrame f = (JFrame) SwingUtilities.getWindowAncestor(AddBookToStoreScreen.fxPanel);
+		f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
     }
     
     @FXML
     void menuItemAddCdClicked(ActionEvent event) {
     	new AddCompactDiscToStoreScreen(this.store, this.cart);
+		JFrame f = (JFrame) SwingUtilities.getWindowAncestor(AddBookToStoreScreen.fxPanel);
+		f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
     }
 
     @FXML
     void menuItemAddDvdClicked(ActionEvent event) {
     	new AddDigitalVideoDiscToStoreScreen(this.store, this.cart);
+		JFrame f = (JFrame) SwingUtilities.getWindowAncestor(AddBookToStoreScreen.fxPanel);
+		f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
     }
 
     @FXML
     void menuItemViewStoreClicked(ActionEvent event) {
     	new StoreScreen(this.store, this.cart);
+		JFrame f = (JFrame) SwingUtilities.getWindowAncestor(AddBookToStoreScreen.fxPanel);
+		f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
     }
 
     @FXML
     void menuItemViewCartClicked(ActionEvent event) {
     	new CartScreen(this.cart, this.store);
+		JFrame f = (JFrame) SwingUtilities.getWindowAncestor(AddBookToStoreScreen.fxPanel);
+		f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
     }
 
 }

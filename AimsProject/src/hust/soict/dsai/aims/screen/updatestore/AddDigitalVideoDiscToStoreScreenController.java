@@ -1,11 +1,17 @@
 package hust.soict.dsai.aims.screen.updatestore;
 
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.LimitExceededException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.EmptyInputException;
+import hust.soict.dsai.aims.exception.NonPositiveCostException;
 import hust.soict.dsai.aims.media.Book;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.screen.cart.CartScreen;
@@ -61,13 +67,15 @@ public class AddDigitalVideoDiscToStoreScreenController {
 
     @FXML
     void btnAddToStorePressed(ActionEvent event) {
-    	String title = tfTitle.getText();
-    	String category = tfCategory.getText();
-    	Float cost = Float.valueOf(tfCost.getText());
-    	String dateAdded = String.valueOf(java.time.LocalDateTime.now());
-    	String director = tfDirector.getText();
-    	Integer length = Integer.valueOf(tfLength.getText());
-    	try {
+		try {
+        	String title = tfTitle.getText();
+        	String category = tfCategory.getText();
+        	if (tfCost.getText().isBlank()) throw new NumberFormatException("Cost cannot be empty");
+        	Float cost = Float.valueOf(tfCost.getText());
+        	String dateAdded = String.valueOf(java.time.LocalDateTime.now());
+        	String director = tfDirector.getText();
+        	if (tfLength.getText().isBlank()) throw new NumberFormatException("Length cannot be empty");
+        	Integer length = Integer.valueOf(tfLength.getText());
 	    	DigitalVideoDisc dvd = new DigitalVideoDisc(title, category, cost, dateAdded, director, length);
 	    	this.store.addMedia(dvd);
 	    	JOptionPane.showMessageDialog(null, "DVD added successfully");
@@ -76,35 +84,57 @@ public class AddDigitalVideoDiscToStoreScreenController {
 	    	tfCost.setText("");
 	    	tfDirector.setText("");
 	    	tfLength.setText("");
-    	}
-    	catch (Exception e) {
-    		
-    	}
+		} catch (NonPositiveCostException | EmptyInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+		} catch (LimitExceededException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			JFrame f = new JFrame();
+			JOptionPane.showMessageDialog(f, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+		}
+
     }
     
     @FXML
     void menuItemAddBookClicked(ActionEvent event) {
     	new AddBookToStoreScreen(this.store, this.cart);
+		JFrame f = (JFrame) SwingUtilities.getWindowAncestor(AddDigitalVideoDiscToStoreScreen.fxPanel);
+		f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
     }
    
     @FXML
     void btnBackToStorePressed(ActionEvent event) {
     	new StoreScreen(this.store, this.cart);
+		JFrame f = (JFrame) SwingUtilities.getWindowAncestor(AddDigitalVideoDiscToStoreScreen.fxPanel);
+		f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
     }
 
     @FXML
     void menuItemAddCdClicked(ActionEvent event) {
     	new AddCompactDiscToStoreScreen(this.store, this.cart);
+		JFrame f = (JFrame) SwingUtilities.getWindowAncestor(AddDigitalVideoDiscToStoreScreen.fxPanel);
+		f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
     }
 
     @FXML
     void menuItemViewStoreClicked(ActionEvent event) {
     	new StoreScreen(this.store, this.cart);
+		JFrame f = (JFrame) SwingUtilities.getWindowAncestor(AddDigitalVideoDiscToStoreScreen.fxPanel);
+		f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
     }
 
     @FXML
     void menuItemViewCartClicked(ActionEvent event) {
     	new CartScreen(this.cart, this.store);
+		JFrame f = (JFrame) SwingUtilities.getWindowAncestor(AddDigitalVideoDiscToStoreScreen.fxPanel);
+		f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
     }
 
 }

@@ -5,7 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import hust.soict.dsai.aims.exception.DigitalVideoDiscPlayException;
-import hust.soict.dsai.aims.exception.MediaConstructorException;
+import hust.soict.dsai.aims.exception.EmptyInputException;
+import hust.soict.dsai.aims.exception.NonPositiveCostException;
 import hust.soict.dsai.aims.exception.PlayerException;
 
 public class DigitalVideoDisc extends Media implements Playable {
@@ -18,8 +19,9 @@ public class DigitalVideoDisc extends Media implements Playable {
 		return length;
 	}
 	public DigitalVideoDisc(String title, String category, float cost, String dateAdded, String director,
-			int length) throws MediaConstructorException {
+			int length) throws NonPositiveCostException, EmptyInputException {
 		super(title, category, cost, dateAdded);
+		if (director.isBlank()) throw new EmptyInputException("Director cannot be empty");
 		this.director = director;
 		this.length = length;
 	}

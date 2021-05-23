@@ -6,7 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import hust.soict.dsai.aims.exception.CompactDiscPlayException;
-import hust.soict.dsai.aims.exception.MediaConstructorException;
+import hust.soict.dsai.aims.exception.EmptyInputException;
+import hust.soict.dsai.aims.exception.NonPositiveCostException;
 import hust.soict.dsai.aims.exception.PlayerException;
 
 public class CompactDisc extends Disc implements Playable{
@@ -14,8 +15,9 @@ public class CompactDisc extends Disc implements Playable{
 	private ArrayList<Track> tracks = new ArrayList<Track>();
 	
 	public CompactDisc(String title, String category, float cost, String dateAdded, int length, String director,
-			String artist, ArrayList<Track> tracks) throws MediaConstructorException {
+			String artist, ArrayList<Track> tracks) throws NonPositiveCostException, EmptyInputException {
 		super(title, category, cost, dateAdded, length, director);
+		if (artist.isBlank()) throw new EmptyInputException("Artist cannot be empty");
 		this.artist = artist;
 		this.tracks = tracks;
 	}

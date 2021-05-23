@@ -5,7 +5,8 @@ import java.util.Comparator;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import hust.soict.dsai.aims.exception.MediaConstructorException;
+import hust.soict.dsai.aims.exception.EmptyInputException;
+import hust.soict.dsai.aims.exception.NonPositiveCostException;
 import hust.soict.dsai.aims.media.comparator.MediaComparatorByCostTitle;
 import hust.soict.dsai.aims.media.comparator.MediaComparatorByTitleCost;
 
@@ -41,8 +42,10 @@ public abstract class Media {
 		return dateAdded;
 	}
 
-	public Media(String title, String category, float cost, String dateAdded) throws MediaConstructorException {
-		if (cost <= 0) throw new MediaConstructorException("Cost can be non-positive");
+	public Media(String title, String category, float cost, String dateAdded) throws NonPositiveCostException, EmptyInputException {
+		if (cost <= 0) throw new NonPositiveCostException("Cost can be non-positive");
+		if (title.isBlank()) throw new EmptyInputException("Title cannot be empty");
+		if (category.isBlank()) throw new EmptyInputException("Category cannot be empty");
 		this.id = ++idGiver;
 		this.title = title;
 		this.category = category;

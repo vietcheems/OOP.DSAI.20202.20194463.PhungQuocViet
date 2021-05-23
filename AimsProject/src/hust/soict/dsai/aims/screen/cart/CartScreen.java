@@ -22,14 +22,14 @@ import javafx.scene.Scene;
 public class CartScreen extends JFrame {
 	private Cart cart;
 	private Store store;
-	private static JFXPanel fxPanel;
+	public static JFXPanel fxPanel;
 	public CartScreen(Cart cart, Store store) {
 		super();
 		
 		this.store = store;
 		this.cart = cart;
 		
-		JFXPanel fxPanel = new JFXPanel();
+		fxPanel = new JFXPanel();
 		this.add(fxPanel);
 		
 		this.setTitle("Cart");

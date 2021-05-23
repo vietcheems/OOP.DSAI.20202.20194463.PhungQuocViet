@@ -3,6 +3,7 @@ package hust.soict.dsai.aims.media;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import hust.soict.dsai.aims.exception.EmptyInputException;
 import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.exception.TrackPlayException;
 
@@ -22,7 +23,8 @@ public class Track implements Playable{
 		this.length = length;
 	}
 
-	public Track(String title, int length) {
+	public Track(String title, int length) throws EmptyInputException {
+		if (title.isBlank()) throw new EmptyInputException("Track title cannot be empty");
 		this.title = title;
 		this.length = length;
 	}

@@ -4,6 +4,7 @@ package hust.soict.dsai.aims.screen.store;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import javax.naming.LimitExceededException;
 import javax.swing.*;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.EmptyInputException;
 import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Book;
 import hust.soict.dsai.aims.media.CompactDisc;
@@ -25,7 +27,7 @@ import hust.soict.dsai.aims.screen.updatestore.AddDigitalVideoDiscToStoreScreen;
 import hust.soict.dsai.aims.store.Store;
 
 public class StoreScreen extends JFrame {
-	private Container cp;
+	public static Container cp;
 	private Store store;
 	private Cart cart;
 	JPanel createNorth() {
@@ -40,7 +42,7 @@ public class StoreScreen extends JFrame {
 		JMenu menu = new JMenu("Options");
 		
 		JMenu smUpdateStore = new JMenu("Update Store");
-		
+				
 		JMenuItem addBook = new JMenuItem("Add Book");
 		addBook.addActionListener(new AddBookListener());
 		smUpdateStore.add(addBook);
@@ -58,6 +60,7 @@ public class StoreScreen extends JFrame {
 		
 		JMenuItem viewCart = new JMenuItem("View cart");
 		viewCart.addActionListener(new ViewCartListener());
+		
 		menu.add(viewCart);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -97,6 +100,8 @@ public class StoreScreen extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			new AddCompactDiscToStoreScreen(store, cart);
+			JFrame f = (JFrame) SwingUtilities.getWindowAncestor(StoreScreen.cp);
+			f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
 		}
 		
 	}
@@ -107,6 +112,8 @@ public class StoreScreen extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			new AddBookToStoreScreen(store, cart);
+			JFrame f = (JFrame) SwingUtilities.getWindowAncestor(StoreScreen.cp);
+			f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
 		}
 		
 	}
@@ -117,6 +124,8 @@ public class StoreScreen extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			new AddDigitalVideoDiscToStoreScreen(store, cart);
+			JFrame f = (JFrame) SwingUtilities.getWindowAncestor(StoreScreen.cp);
+			f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
 		}
 		
 	}
@@ -128,6 +137,8 @@ public class StoreScreen extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			new CartScreen(cart, store);
+			JFrame f = (JFrame) SwingUtilities.getWindowAncestor(StoreScreen.cp);
+			f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
 		}
 	}
 	
@@ -270,10 +281,22 @@ public class StoreScreen extends JFrame {
 		Cart cart = new Cart();
 		Store store = new Store();
 		ArrayList<Track> tracks = new ArrayList<Track>();
-		Track track1 = new Track("Track1", 50);
-		Track track2 = new Track("Track2", 50);
-		tracks.add(track1);
-		tracks.add(track2);
+		Track track1;
+		try {
+			track1 = new Track("Track1", 50);
+			tracks.add(track1);
+		} catch (EmptyInputException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		Track track2;
+		try {
+			track2 = new Track("Track2", 50);
+			tracks.add(track2);
+		} catch (EmptyInputException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		try {
 			CompactDisc cd = new CompactDisc("Some CD name idk", "Pop", 50f, "20/01/2001", 100, "Someone chad", "Someone cheems",
 					tracks);
@@ -331,6 +354,7 @@ public class StoreScreen extends JFrame {
 			JFrame f1 = new JFrame();
 			JOptionPane.showMessageDialog(f1, e1.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
 		}
+		
 		
 //		try {
 //			store.addMedia(dvd1);

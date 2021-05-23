@@ -1,5 +1,6 @@
 package hust.soict.dsai.aims.screen.updatestore;
 
+import java.awt.Component;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -19,10 +20,11 @@ import javafx.stage.Stage;
 public class AddBookToStoreScreen extends JFrame {
 	private Cart cart;
 	private Store store;
+	public static JFXPanel fxPanel;
 	public AddBookToStoreScreen(Store store, Cart cart) {
 		this.store = store;
 		this.cart = cart;	
-		JFXPanel fxPanel = new JFXPanel();
+		fxPanel = new JFXPanel();
 		this.add(fxPanel);
 		
 		this.setTitle("Add Book");

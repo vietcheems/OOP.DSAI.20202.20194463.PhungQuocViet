@@ -1,7 +1,10 @@
 package hust.soict.dsai.aims.screen.cart;
 
+import java.awt.event.WindowEvent;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.exception.PlayerException;
@@ -19,6 +22,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -214,22 +218,30 @@ public class CartScreenController {
     @FXML
     void menuItemViewStoreClicked(ActionEvent event) {
 		new StoreScreen(this.store, this.cart);
+		JFrame f = (JFrame) SwingUtilities.getWindowAncestor(CartScreen.fxPanel);
+		f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
     }
     
 
     @FXML
     void menuItemAddBookClicked(ActionEvent event) {
     	new AddBookToStoreScreen(this.store, this.cart);
+		JFrame f = (JFrame) SwingUtilities.getWindowAncestor(CartScreen.fxPanel);
+		f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
     }
 
     @FXML
     void menuItemAddCdClicked(ActionEvent event) {
     	new AddCompactDiscToStoreScreen(this.store, this.cart);
+		JFrame f = (JFrame) SwingUtilities.getWindowAncestor(CartScreen.fxPanel);
+		f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
     }
 
     @FXML
     void menuItemAddDvdClicked(ActionEvent event) {
     	new AddDigitalVideoDiscToStoreScreen(this.store, this.cart);
+		JFrame f = (JFrame) SwingUtilities.getWindowAncestor(CartScreen.fxPanel);
+		f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
     }
     
     @FXML

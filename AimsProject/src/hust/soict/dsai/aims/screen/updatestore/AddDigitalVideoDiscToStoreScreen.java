@@ -15,10 +15,11 @@ import javafx.scene.Scene;
 public class AddDigitalVideoDiscToStoreScreen extends JFrame {
 	private Cart cart;
 	private Store store;
+	public static JFXPanel fxPanel;
 	public AddDigitalVideoDiscToStoreScreen(Store store, Cart cart) {
 		this.store = store;
 		this.cart = cart;	
-		JFXPanel fxPanel = new JFXPanel();
+		fxPanel = new JFXPanel();
 		this.add(fxPanel);
 		
 		this.setTitle("Add DVD");
